@@ -1,11 +1,7 @@
-import { useRouter } from 'next/router';
-
 import { Meta } from '@/layouts/Meta';
 import { Tokyo } from '@/templates/Tokyo';
 
 const Index = () => {
-  const router = useRouter();
-
   return (
     <Tokyo
       meta={
@@ -15,170 +11,86 @@ const Index = () => {
         />
       }
     >
-      <a href="https://github.com/ixartz/Next-js-Boilerplate">
-        <img
-          src={`${router.basePath}/assets/images/nextjs-starter-banner.png`}
-          alt="Nextjs starter banner"
-        />
-      </a>
-      <h1 className="text-2xl font-bold">
-        Boilerplate code for your Nextjs project with Tailwind CSS
-      </h1>
-      <p>
-        <span role="img" aria-label="rocket">
-          🚀
-        </span>{' '}
-        Next.js Boilerplate is a starter code for your Next js project by
-        putting developer experience first .{' '}
-        <span role="img" aria-label="zap">
-          ⚡️
-        </span>{' '}
-        Made with Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged,
-        VSCode, Netlify, PostCSS, Tailwind CSS.
-      </p>
-      <h2 className="text-lg font-semibold">Next js Boilerplate Features</h2>
-      <p>Developer experience first:</p>
-      <ul>
-        <li>
-          <span role="img" aria-label="fire">
-            🔥
-          </span>{' '}
-          <a href="https://nextjs.org" rel="nofollow">
-            Next.js
-          </a>{' '}
-          for Static Site Generator
-        </li>
-        <li>
-          <span role="img" aria-label="art">
-            🎨
-          </span>{' '}
-          Integrate with{' '}
-          <a href="https://tailwindcss.com" rel="nofollow">
-            Tailwind CSS
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="nail_care">
-            💅
-          </span>{' '}
-          PostCSS for processing Tailwind CSS
-        </li>
-        <li>
-          <span role="img" aria-label="tada">
-            🎉
-          </span>{' '}
-          Type checking Typescript
-        </li>
-        <li>
-          <span role="img" aria-label="pencil2">
-            ✏️
-          </span>{' '}
-          Linter with{' '}
-          <a href="https://eslint.org" rel="nofollow">
-            ESLint
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="hammer_and_wrench">
-            🛠
-          </span>{' '}
-          Code Formatter with{' '}
-          <a href="https://prettier.io" rel="nofollow">
-            Prettier
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="fox_face">
-            🦊
-          </span>{' '}
-          Husky for Git Hooks
-        </li>
-        <li>
-          <span role="img" aria-label="no_entry_sign">
-            🚫
-          </span>{' '}
-          Lint-staged for running linters on Git staged files
-        </li>
-        <li>
-          <span role="img" aria-label="no_entry_sign">
-            🗂
-          </span>{' '}
-          VSCode configuration: Debug, Settings, Tasks and extension for
-          PostCSS, ESLint, Prettier, TypeScript
-        </li>
-        <li>
-          <span role="img" aria-label="robot">
-            🤖
-          </span>{' '}
-          SEO metadata, JSON-LD and Open Graph tags with Next SEO
-        </li>
-        <li>
-          <span role="img" aria-label="robot">
-            ⚙️
-          </span>{' '}
-          <a
-            href="https://www.npmjs.com/package/@next/bundle-analyzer"
-            rel="nofollow"
-          >
-            Bundler Analyzer
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="rainbow">
-            🌈
-          </span>{' '}
-          Include a FREE minimalist theme
-        </li>
-        <li>
-          <span role="img" aria-label="hundred">
-            💯
-          </span>{' '}
-          Maximize lighthouse score
-        </li>
-      </ul>
-      <p>Built-in feature from Next.js:</p>
-      <ul>
-        <li>
-          <span role="img" aria-label="coffee">
-            ☕
-          </span>{' '}
-          Minify HTML &amp; CSS
-        </li>
-        <li>
-          <span role="img" aria-label="dash">
-            💨
-          </span>{' '}
-          Live reload
-        </li>
-        <li>
-          <span role="img" aria-label="white_check_mark">
-            ✅
-          </span>{' '}
-          Cache busting
-        </li>
-      </ul>
-      <h2 className="text-lg font-semibold">Our Stater code Philosophy</h2>
-      <ul>
-        <li>Minimal code</li>
-        <li>SEO-friendly</li>
-        <li>
-          <span role="img" aria-label="rocket">
-            🚀
-          </span>{' '}
-          Production-ready
-        </li>
-      </ul>
-      <p>
-        Check our GitHub project for more information about{' '}
-        <a href="https://github.com/ixartz/Next-js-Boilerplate">
-          Nextjs Boilerplate
-        </a>
-        . You can also browse our{' '}
-        <a href="https://creativedesignsguru.com/category/nextjs/">
-          Premium NextJS Templates
-        </a>{' '}
-        on our website to support this project.
-      </p>
+      {/* HOME */}
+      <div id="home" className="tokyo_tm_section animated">
+        <div className="container">
+          <div className="tokyo_tm_home relative clear-both flex min-h-[100vh] w-full items-center justify-center">
+            <div className="home_content flex items-center">
+              <div
+                className="avatar relative min-h-[300px] min-w-[300px] rounded-full"
+                data-type="wave"
+              >
+                <div
+                  className="image absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  // data-img-url="/assets/img/portfolio/1.jpg"
+                  style={{
+                    backgroundImage: `url('/assets/img/cv/foto-derrint.jpg')`,
+                  }}
+                />
+                {/* <img
+                      className="image absolute inset-0 bg-cover bg-center bg-no-repeat"
+                      src="/assets/img/cv/foto-derrint.jpg"
+                      alt=""
+                    /> */}
+              </div>
+              <div className="details ml-[80px]">
+                <h3 className="name mb-[14px] text-[55px] font-extrabold uppercase">
+                  Adriano <span>Smith</span>
+                </h3>
+                <p className="job mb-[25px] max-w-[450px] font-montserrat font-medium">
+                  I am a WordPress Developer at heart and create features that
+                  are best suited for the job at hand.
+                </p>
+                <div className="social float-left w-full">
+                  <ul className="m-0 list-none">
+                    <li className="mr-[8px] inline-block">
+                      <a
+                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
+                        href="#"
+                      >
+                        <i className="icon-facebook-squared"></i>
+                      </a>
+                    </li>
+                    <li className="mr-[8px] inline-block">
+                      <a
+                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
+                        href="#"
+                      >
+                        <i className="icon-twitter-squared"></i>
+                      </a>
+                    </li>
+                    <li className="mr-[8px] inline-block">
+                      <a
+                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
+                        href="#"
+                      >
+                        <i className="icon-behance-squared"></i>
+                      </a>
+                    </li>
+                    <li className="mr-[8px] inline-block">
+                      <a
+                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
+                        href="#"
+                      >
+                        <i className="icon-linkedin-squared"></i>
+                      </a>
+                    </li>
+                    <li className="inline-block">
+                      <a
+                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
+                        href="#"
+                      >
+                        <i className="icon-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* /HOME */}
     </Tokyo>
   );
 };
