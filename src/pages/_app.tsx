@@ -1,5 +1,5 @@
 import '../styles/global.css';
-// import '../styles/plugins.css';
+import '../styles/plugins.css';
 import '../styles/custom.css';
 import '../styles/main.css';
 
