@@ -1,13 +1,44 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { FiGithub, FiInstagram, FiLinkedin, FiTwitter } from 'react-icons/fi';
+
 import { Meta } from '@/layouts/Meta';
 import { Tokyo } from '@/templates/Tokyo';
 
 const Index = () => {
+  const socials = [
+    {
+      id: 1,
+      url: 'https://github.com/derrint',
+      icon: <FiGithub />,
+    },
+    {
+      id: 3,
+      url: 'https://www.instagram.com/lorensioderrint/',
+      icon: <FiInstagram />,
+    },
+    {
+      id: 4,
+      url: 'https://twitter.com/derrint',
+      icon: <FiTwitter />,
+    },
+    // {
+    //   id: 5,
+    //   url: 'https://www.facebook.com/derrint',
+    //   icon: <FiFacebook />,
+    // },
+    {
+      id: 2,
+      url: 'https://id.linkedin.com/in/lorensioderrint',
+      icon: <FiLinkedin />,
+    },
+  ];
   return (
     <Tokyo
       meta={
         <Meta
-          title="Next.js Boilerplate Presentation"
-          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
+          title="Home || LDYN"
+          description="I'm a creative Software Engineer with a great willingness
+          to learn and master Front-End & Mobile Development."
         />
       }
     >
@@ -22,67 +53,33 @@ const Index = () => {
               >
                 <div
                   className="image absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  // data-img-url="/assets/img/portfolio/1.jpg"
                   style={{
                     backgroundImage: `url('/assets/img/cv/foto-derrint.jpg')`,
                   }}
                 />
-                {/* <img
-                      className="image absolute inset-0 bg-cover bg-center bg-no-repeat"
-                      src="/assets/img/cv/foto-derrint.jpg"
-                      alt=""
-                    /> */}
               </div>
               <div className="details ml-[80px]">
                 <h3 className="name mb-[14px] text-[55px] font-extrabold uppercase">
-                  Adriano <span>Smith</span>
+                  Lorensio <span>Derrint</span>
                 </h3>
                 <p className="job mb-[25px] max-w-[450px] font-montserrat font-medium">
-                  I am a WordPress Developer at heart and create features that
-                  are best suited for the job at hand.
+                  I&apos;m a creative Software Engineer with a great willingness
+                  to learn and master Front-End & Mobile Development.
                 </p>
                 <div className="social float-left w-full">
                   <ul className="m-0 list-none">
-                    <li className="mr-[8px] inline-block">
-                      <a
-                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
-                        href="#"
-                      >
-                        <i className="icon-facebook-squared"></i>
-                      </a>
-                    </li>
-                    <li className="mr-[8px] inline-block">
-                      <a
-                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
-                        href="#"
-                      >
-                        <i className="icon-twitter-squared"></i>
-                      </a>
-                    </li>
-                    <li className="mr-[8px] inline-block">
-                      <a
-                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
-                        href="#"
-                      >
-                        <i className="icon-behance-squared"></i>
-                      </a>
-                    </li>
-                    <li className="mr-[8px] inline-block">
-                      <a
-                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
-                        href="#"
-                      >
-                        <i className="icon-linkedin-squared"></i>
-                      </a>
-                    </li>
-                    <li className="inline-block">
-                      <a
-                        className="text-[20px] text-black transition-all duration-300 hover:text-black"
-                        href="#"
-                      >
-                        <i className="icon-instagram"></i>
-                      </a>
-                    </li>
+                    {socials.map(({ id, url, icon }) => (
+                      <li key={id} className="mr-3 inline-block">
+                        <a
+                          className="text-[20px] text-black transition-all duration-300 hover:text-black"
+                          href={url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {icon}
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

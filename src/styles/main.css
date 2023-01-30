@@ -550,11 +550,13 @@ body::-webkit-scrollbar {
   width: 0px;
 }
 
+/*
 svg {
   height: 15px;
   width: 15px;
   fill: currentColor;
 }
+*/
 
 img.svg {
   height: 15px;

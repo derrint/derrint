@@ -111,7 +111,7 @@ const Tokyo = (props: IMainProps) => {
         {/* LEFTPART */}
         <div className="leftpart fixed z-[12] flex h-[100vh] w-[450px] items-center bg-white px-[100px] py-[0px]">
           <div className="leftpart_inner h-auto w-full">
-            <div className="logo" data-type="image">
+            <div className="logo" data-type="text">
               {' '}
               {/* You can use image or text as logo. data-type values are: "image" and "text" */}
               <a href="#">
@@ -121,7 +121,7 @@ const Tokyo = (props: IMainProps) => {
                   alt=""
                 />
                 <h3 className="font-poppins text-[31px] font-black tracking-[5px]">
-                  TOKYO
+                  LDYN
                 </h3>
               </a>
             </div>
@@ -146,17 +146,7 @@ const Tokyo = (props: IMainProps) => {
             </div>
             <div className="copyright float-left w-full">
               <p className="font-montserrat text-[15px] leading-[25px] text-[#999]">
-                &copy; 2022 Tokyo
-                <br />
-                Created by{' '}
-                <a
-                  className="font-medium text-[#787878] transition-all duration-300 hover:text-black"
-                  href="https://themeforest.net/user/marketify"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Marketify
-                </a>
+                &copy; 2023 Lorensio Derrint
               </p>
             </div>
           </div>

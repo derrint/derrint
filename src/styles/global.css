@@ -22,9 +22,11 @@
     body::-webkit-scrollbar{
         @apply w-0;
     }
+    /* 
     svg{
         @apply fill-current w-[15px] h-[15px];
     }
+    */
     img.svg{
         @apply w-[15px] h-[15px];
     }
