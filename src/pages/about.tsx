@@ -14,7 +14,9 @@ const About = () => (
                 <span className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]">
                   About
                 </span>
-                <h3 className="font-montserrat font-extrabold">About Me</h3>
+                <h3 className="font-montserrat font-extrabold">
+                  Here is My Bio
+                </h3>
               </div>
             </div>
           </div>
@@ -22,45 +24,40 @@ const About = () => (
             <img className="min-w-full" src="/assets/img/slider/1.jpg" alt="" />
           </div>
           <div className="about_title float-left clear-both mb-[30px] h-auto w-full border-b border-solid border-[#DFDFDF] pb-[20px]">
-            <h3 className="text-[22px] font-bold">Adriano Smith</h3>
-            <span>Web Developer</span>
+            <h3 className="text-[22px] font-bold">Lorensio Derrint</h3>
+            <span>Software Engineer</span>
           </div>
           <div className="about_text float-left clear-both mb-[30px] h-auto w-full border-b border-solid border-[#DFDFDF] pb-[31px]">
             <p className="mb-[11px]">
-              Hi, my name is Adriano Smith and I began using WordPress when it
-              first began. I&apos;ve spent most of my waking hours for the last
-              ten years designing, programming and operating WordPress sites.
+              Hi, I&apos;m Lorensio Derrint, a creative Software Engineer with{' '}
+              <b>10+ years</b> of practical experience in various programming
+              languages & technology, such as Javascript / Typescript, React /
+              React Native, HTML / CSS, PHP / MySQL areas with a willingness to
+              learn and master Front-End & Mobile Development.
             </p>
             <p>
-              One of my specialties is taking an idea from scratch and creating
-              a full-fledged platform. I go beyond to produce sites with a
-              unique, outstanding, contemporary look-and-feel. With extensive
-              knowledge of web mechanics, I&apos;m able to optimize complex
-              integrations to require little-to-no maintenance while running on
-              their own for years.
+              I have been designed, developed, and maintained more than 50,
+              small to extensive-scale, web & mobile based applications, in wide
+              variety of project industries, such as Automotive, Event
+              Producers, Marketplace, NFT & Blockchain, Broadcasting, Finance,
+              Travel & Tourism, and Hospitality.
             </p>
           </div>
           <div className="tokyo_tm_short_info float-left clear-both mb-[40px] flex h-auto w-full border-b border-solid border-[#DFDFDF] pb-[30px]">
-            <div className="left w-1/2 pr-[50px]">
+            <div className="left w-1/2 pr-8">
               <div className="tokyo_tm_info float-left clear-both h-auto w-full">
                 <ul className="m-0 list-none">
                   <li className="m-0">
                     <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
-                      Birthday:
-                    </span>
-                    <span>01.07.1990</span>
-                  </li>
-                  <li className="m-0">
-                    <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
                       Age:
                     </span>
-                    <span>32</span>
+                    <span>28</span>
                   </li>
                   <li className="m-0">
                     <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
                       Address:
                     </span>
-                    <span>Ave 11, New York, USA</span>
+                    <span>Malang, East Java, Indonesia</span>
                   </li>
                   <li className="m-0">
                     <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
@@ -71,7 +68,7 @@ const About = () => (
                         className="text-[#767676] transition-all duration-300 hover:text-black"
                         href="mailto:tokyo@gmail.com"
                       >
-                        tokyo@gmail.com
+                        lorensioderrint@gmail.com
                       </a>
                     </span>
                   </li>
@@ -84,52 +81,46 @@ const About = () => (
                         className="text-[#767676] transition-all duration-300 hover:text-black"
                         href="tel:+77 022 177 05 05"
                       >
-                        +77 022 177 05 05
+                        +62 812 3224 5315
                       </a>
                     </span>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="right w-1/2 pl-[50px]">
+            <div className="right w-1/2 pl-8">
               <div className="tokyo_tm_info">
                 <ul className="m-0 list-none">
                   <li className="m-0">
                     <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
                       Nationality:
                     </span>
-                    <span>USA</span>
+                    <span>Indonesian</span>
                   </li>
                   <li className="m-0">
                     <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
                       Study:
                     </span>
-                    <span>Univercity of Texas</span>
+                    <span>STMIK Pradnya Paramita</span>
                   </li>
                   <li className="m-0">
                     <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
                       Degree:
                     </span>
-                    <span>Master</span>
+                    <span>Bachelor of Computer Science</span>
                   </li>
                   <li className="m-0">
                     <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
                       Interest:
                     </span>
-                    <span>Playing Football</span>
-                  </li>
-                  <li className="m-0">
-                    <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
-                      Freelance:
-                    </span>
-                    <span>Available</span>
+                    <span>Driving, Travelling, Wandering Around</span>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-          <div className="tokyo_tm_button" data-position="left">
-            <a href="/assets/img/cv/1.jpg" download>
+          <div className="tokyo_tm_button flex justify-center">
+            <a href="/assets/doc/cv-lorensioderrint.pdf" download>
               <span>Download CV</span>
             </a>
           </div>
@@ -140,13 +131,13 @@ const About = () => (
           <div className="in float-left clear-both flex h-auto w-full">
             <div className="left w-1/2 pr-[50px]">
               <div className="tokyo_section_title float-left clear-both mb-[40px] h-auto w-full">
-                <h3 className="text-[20px] font-bold">Programming Skills</h3>
+                <h3 className="text-[20px] font-bold">Coding Skills</h3>
               </div>
               <div className="tokyo_progress">
                 <div className="progress_inner" data-value="95">
                   <span>
-                    <span className="label">WordPress</span>
-                    <span className="number">95%</span>
+                    <span className="label">JavaScript, TypeScript, ES6+ </span>
+                    <span className="number">5+ years</span>
                   </span>
                   <div className="background">
                     <div className="bar">
@@ -156,8 +147,8 @@ const About = () => (
                 </div>
                 <div className="progress_inner" data-value="80">
                   <span>
-                    <span className="label">JavaScript</span>
-                    <span className="number">80%</span>
+                    <span className="label">React, React Native, NextJS</span>
+                    <span className="number">3+ years</span>
                   </span>
                   <div className="background">
                     <div className="bar">
@@ -167,8 +158,43 @@ const About = () => (
                 </div>
                 <div className="progress_inner" data-value="90">
                   <span>
-                    <span className="label">Angular</span>
-                    <span className="number">90%</span>
+                    <span className="label">HTML5, CSS3</span>
+                    <span className="number">10+ years</span>
+                  </span>
+                  <div className="background">
+                    <div className="bar">
+                      <div className="bar_in"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="progress_inner" data-value="90">
+                  <span>
+                    <span className="label">VueJS, Sass</span>
+                    <span className="number">2+ years</span>
+                  </span>
+                  <div className="background">
+                    <div className="bar">
+                      <div className="bar_in"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="progress_inner" data-value="90">
+                  <span>
+                    <span className="label">PHP, MySQL</span>
+                    <span className="number">7+ years</span>
+                  </span>
+                  <div className="background">
+                    <div className="bar">
+                      <div className="bar_in"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="progress_inner" data-value="90">
+                  <span>
+                    <span className="label">
+                      App Store & Play Store Publishing
+                    </span>
+                    <span className="number">2+ years</span>
                   </span>
                   <div className="background">
                     <div className="bar">
@@ -185,8 +211,8 @@ const About = () => (
               <div className="tokyo_progress">
                 <div className="progress_inner" data-value="90">
                   <span>
-                    <span className="label">English</span>
-                    <span className="number">90%</span>
+                    <span className="label">Indonesian</span>
+                    <span className="number">Native</span>
                   </span>
                   <div className="background">
                     <div className="bar">
@@ -196,8 +222,8 @@ const About = () => (
                 </div>
                 <div className="progress_inner" data-value="95">
                   <span>
-                    <span className="label">Russian</span>
-                    <span className="number">95%</span>
+                    <span className="label">English</span>
+                    <span className="number">Fluent</span>
                   </span>
                   <div className="background">
                     <div className="bar">
@@ -207,8 +233,8 @@ const About = () => (
                 </div>
                 <div className="progress_inner" data-value="85">
                   <span>
-                    <span className="label">Arabic</span>
-                    <span className="number">85%</span>
+                    <span className="label">Spanish</span>
+                    <span className="number">Beginner</span>
                   </span>
                   <div className="background">
                     <div className="bar">

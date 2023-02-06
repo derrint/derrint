@@ -623,10 +623,10 @@ h6 {
 }
 
 .tokyo_tm_button {
-  float: left;
+  /* float: left;
   clear: both;
   height: auto;
-  width: 100%;
+  width: 100%; */
 }
 
 .tokyo_tm_button a {
