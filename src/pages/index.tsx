@@ -1,38 +1,36 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { FiGithub, FiInstagram, FiLinkedin, FiTwitter } from 'react-icons/fi';
+import {
+  FiFacebook,
+  FiGithub,
+  FiInstagram,
+  FiLinkedin,
+  FiTwitter,
+} from 'react-icons/fi';
 import Fade from 'react-reveal/Fade';
 
+import homeData from '@/data/home';
 import { Meta } from '@/layouts/Meta';
 import { Tokyo } from '@/templates/Tokyo';
 
 const Index = () => {
-  const socials = [
-    {
-      id: 1,
-      url: 'https://github.com/derrint',
-      icon: <FiGithub />,
-    },
-    {
-      id: 3,
-      url: 'https://www.instagram.com/lorensioderrint/',
-      icon: <FiInstagram />,
-    },
-    {
-      id: 4,
-      url: 'https://twitter.com/derrint',
-      icon: <FiTwitter />,
-    },
-    // {
-    //   id: 5,
-    //   url: 'https://www.facebook.com/derrint',
-    //   icon: <FiFacebook />,
-    // },
-    {
-      id: 2,
-      url: 'https://id.linkedin.com/in/lorensioderrint',
-      icon: <FiLinkedin />,
-    },
-  ];
+  const getIcon = (url: string) => {
+    const { hostname } = new URL(url);
+    let icon = <></>;
+    if (hostname.includes('github')) {
+      icon = <FiGithub />;
+    } else if (hostname.includes('instagram')) {
+      icon = <FiInstagram />;
+    } else if (hostname.includes('twitter')) {
+      icon = <FiTwitter />;
+    } else if (hostname.includes('facebook')) {
+      icon = <FiFacebook />;
+    } else if (hostname.includes('linkedin')) {
+      icon = <FiLinkedin />;
+    }
+
+    return icon;
+  };
+
   return (
     <Tokyo
       meta={
@@ -56,7 +54,7 @@ const Index = () => {
                   <div
                     className="image absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                      backgroundImage: `url('/assets/img/cv/foto-derrint.jpg')`,
+                      backgroundImage: `url('${homeData.image}')`,
                     }}
                   />
                 </div>
@@ -64,25 +62,23 @@ const Index = () => {
                 <div className="details ml-[80px]">
                   <h3 className="name mb-[14px] text-[55px] font-extrabold uppercase">
                     <Fade left cascade duration={500} delay={250}>
-                      Lorensio Derrint
+                      {homeData.name}
                     </Fade>
                   </h3>
                   <p className="job mb-[25px] max-w-[450px] font-montserrat font-medium">
-                    I&apos;m a creative Software Engineer with a great
-                    willingness to learn and master Front-End & Mobile
-                    Development.
+                    {homeData.description}
                   </p>
                   <div className="social float-left w-full">
                     <ul className="m-0 list-none">
-                      {socials.map(({ id, url, icon }) => (
-                        <li key={id} className="mr-3 inline-block">
+                      {homeData.socials.map((url, idx) => (
+                        <li key={idx} className="mr-3 inline-block">
                           <a
                             className="text-[20px] text-black transition-all duration-300 hover:text-black"
                             href={url}
                             target="_blank"
                             rel="noreferrer"
                           >
-                            {icon}
+                            {getIcon(url)}
                           </a>
                         </li>
                       ))}
