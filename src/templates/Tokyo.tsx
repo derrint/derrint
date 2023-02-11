@@ -4,45 +4,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
 
+import menuData from '@/data/menu';
+
 type IMainProps = {
   meta: ReactNode;
   children: ReactNode;
 };
 
 const Tokyo = (props: IMainProps) => {
-  const menus = [
-    {
-      id: 1,
-      href: '/',
-      label: 'Home',
-    },
-    {
-      id: 2,
-      href: '/about',
-      label: 'About',
-    },
-    {
-      id: 3,
-      href: '/service',
-      label: 'Service',
-    },
-    {
-      id: 4,
-      href: '/portfolio',
-      label: 'Portfolio',
-    },
-    {
-      id: 5,
-      href: '/news',
-      label: 'News',
-    },
-    {
-      id: 6,
-      href: '/contact',
-      label: 'Contact',
-    },
-  ];
-
   const router = useRouter();
 
   return (
@@ -91,7 +60,7 @@ const Tokyo = (props: IMainProps) => {
         <div className="tokyo_tm_mobile_menu fixed top-[50px] right-[-200px] z-[15] h-[100vh] w-[200px] bg-white transition-all duration-300">
           <div className="menu_list float-left clear-both h-auto w-full px-[20px] pt-[100px] pb-[0px] text-right">
             <ul className="transition_link list-none">
-              {menus.map(({ id, href, label }) => (
+              {menuData.map(({ id, href, title }) => (
                 <li
                   key={id}
                   className={`mb-[7px] ${
@@ -99,7 +68,7 @@ const Tokyo = (props: IMainProps) => {
                   }`}
                 >
                   <a className="font-montserrat text-black" href={href}>
-                    {label}
+                    {title}
                   </a>
                 </li>
               ))}
@@ -127,7 +96,7 @@ const Tokyo = (props: IMainProps) => {
             </div>
             <div className="menu float-left w-full px-[0px] py-[50px]">
               <ul className="transition_link m-0 list-none">
-                {menus.map(({ id, href, label }) => (
+                {menuData.map(({ id, href, title }) => (
                   <li
                     key={id}
                     className={`float-left m-0 w-full ${
@@ -138,7 +107,7 @@ const Tokyo = (props: IMainProps) => {
                       className="inline-block font-montserrat font-medium text-[#767676] transition-all duration-300 hover:text-black"
                       href={href}
                     >
-                      {label}
+                      {title}
                     </Link>
                   </li>
                 ))}

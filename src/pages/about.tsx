@@ -1,9 +1,15 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+import { useRouter } from 'next/router';
+
 import aboutData from '@/data/about';
+import menuData from '@/data/menu';
 import { Meta } from '@/layouts/Meta';
 import { Tokyo } from '@/templates/Tokyo';
 
 const About = () => {
+  const { pathname } = useRouter();
+  const menu = menuData.find((x) => x.href === pathname);
+
   const halfOfInfo = Math.ceil(aboutData.info.length / 2);
 
   const firstHalfOfInfo = aboutData.info.slice(0, halfOfInfo);
@@ -20,10 +26,10 @@ const About = () => {
               <div className="title_flex clear-both flex h-auto w-full items-end justify-between">
                 <div className="left">
                   <span className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]">
-                    About
+                    {menu?.title}
                   </span>
                   <h3 className="font-montserrat font-extrabold">
-                    Here is My Bio
+                    {menu?.subtitle}
                   </h3>
                 </div>
               </div>
