@@ -27,7 +27,7 @@ const menuData = [
     id: 5,
     href: '/projects',
     title: 'Projects',
-    subtitle: '',
+    subtitle: 'Some of My Work',
   },
   {
     id: 6,
