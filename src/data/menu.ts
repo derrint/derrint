@@ -19,14 +19,14 @@ const menuData = [
   // },
   {
     id: 4,
-    href: '/portfolio',
-    title: 'Portfolio',
-    subtitle: '',
+    href: '/gallery',
+    title: 'Gallery',
+    subtitle: 'My Trips, So Far',
   },
   {
     id: 5,
-    href: '/projects',
-    title: 'Projects',
+    href: '/portfolio',
+    title: 'Portfolio',
     subtitle: 'Some of My Work',
   },
   {
