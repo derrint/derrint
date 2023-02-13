@@ -9,7 +9,10 @@ const portfolioData = [
     description:
       'A brand new Event Supporting / News Portal / Automotive Marketplace',
     stack: 'React Native, Go, PostgreSQL',
-    image: '/assets/img/portfolio/auto360/cover.png',
+    images: [
+      '/assets/img/portfolio/auto360/cover.png',
+      '/assets/img/portfolio/auto360/screenshot.jpeg',
+    ],
     url: 'https://play.google.com/store/apps/details?id=com.expohub&pli=1',
   },
   {
@@ -22,7 +25,10 @@ const portfolioData = [
     description:
       'A widget which wrap multiple payment providers data aggregation in a single web app',
     stack: 'React, React Native',
-    image: '/assets/img/portfolio/sophtron/cover.png',
+    images: [
+      '/assets/img/portfolio/sophtron/cover.png',
+      '/assets/img/portfolio/sophtron/screenshot.jpeg',
+    ],
     url: 'https://sophtron-web.vercel.app/',
   },
   {
@@ -35,7 +41,10 @@ const portfolioData = [
     description:
       'An interactive 3D web app wrapper & landing page for NFT Game',
     stack: 'React + NextJS, ThreeJS',
-    image: '/assets/img/portfolio/yooniez/cover.png',
+    images: [
+      '/assets/img/portfolio/yooniez/cover.png',
+      '/assets/img/portfolio/yooniez/screenshot.jpeg',
+    ],
     url: 'https://yooniez-derrint.vercel.app/',
   },
   {
@@ -48,7 +57,10 @@ const portfolioData = [
     description:
       'A rich animated landing page for Vessel blockchain network & app SDK',
     stack: 'React + NextJS',
-    image: '/assets/img/portfolio/vessel/cover.png',
+    images: [
+      '/assets/img/portfolio/vessel/cover.png',
+      '/assets/img/portfolio/vessel/screenshot.jpeg',
+    ],
     url: 'https://www.openvessel.io/',
   },
   {
@@ -60,7 +72,10 @@ const portfolioData = [
     year: '2022',
     description: 'A playable & interactive landing page for creative agency',
     stack: 'React + NextJS',
-    image: '/assets/img/portfolio/simple-duck-studios/cover.png',
+    images: [
+      '/assets/img/portfolio/simple-duck-studios/cover.png',
+      '/assets/img/portfolio/simple-duck-studios/screenshot.jpeg',
+    ],
     url: 'https://simple-duck-studios.vercel.app/',
   },
   {
@@ -73,7 +88,10 @@ const portfolioData = [
     description:
       'A new Marketplace / Landing Page / Game Supporting website app related to NFT & Cryptocurrency',
     stack: 'React + NextJS, Go',
-    image: '/assets/img/portfolio/diamond-hands/cover.png',
+    images: [
+      '/assets/img/portfolio/diamond-hands/cover.png',
+      '/assets/img/portfolio/diamond-hands/screenshot.jpeg',
+    ],
     url: 'https://diamond-hands-eight.vercel.app/',
   },
   {
@@ -85,7 +103,10 @@ const portfolioData = [
     year: '2021',
     description: 'A brand new public service mobile app from KEMENAG RI',
     stack: 'React Native, PHP, MySQL',
-    image: '/assets/img/portfolio/dulk/cover.png',
+    images: [
+      '/assets/img/portfolio/dulk/cover.png',
+      '/assets/img/portfolio/dulk/screenshot.jpeg',
+    ],
   },
   {
     id: 7,
@@ -97,7 +118,10 @@ const portfolioData = [
     description:
       'A rebranded TV live streaming service & TV On-demand mobile app from TVRI',
     stack: 'React Native, PHP, MySQL',
-    image: '/assets/img/portfolio/tvri/cover.png',
+    images: [
+      '/assets/img/portfolio/tvri/cover.png',
+      '/assets/img/portfolio/tvri/screenshot.jpeg',
+    ],
     url: 'https://play.google.com/store/apps/details?id=id.go.tvri.klik',
   },
 ];

@@ -91,14 +91,14 @@ const News = () => {
                       <div className="image relative overflow-hidden">
                         <img
                           className="min-w-full opacity-0"
-                          src={project.image}
+                          src={project.images[0]}
                           alt=""
                         />
                         <div
                           className="main absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
                           // data-img-url="/assets/img/news/1.jpg"
                           style={{
-                            backgroundImage: `url('${project.image}')`,
+                            backgroundImage: `url('${project.images[0]}')`,
                           }}
                         ></div>
                         <a
@@ -144,14 +144,14 @@ const News = () => {
           <div className="image relative w-2/3 overflow-hidden">
             <img
               className="min-w-full opacity-0"
-              src={selectedProject?.image}
+              src={selectedProject?.images[1]}
               alt=""
             />
             <div
               className="main absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
               // data-img-url="/assets/img/news/1.jpg"
               style={{
-                backgroundImage: `url('${selectedProject?.image}')`,
+                backgroundImage: `url('${selectedProject?.images[1]}')`,
               }}
             ></div>
           </div>

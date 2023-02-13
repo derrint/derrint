@@ -6,7 +6,7 @@ export interface IPortfolio {
   year: string;
   description: string;
   stack: string;
-  image: string;
+  images: string[];
   role: string;
   url: string;
 }
