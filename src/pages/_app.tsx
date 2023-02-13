@@ -4,9 +4,14 @@ import '../styles/custom.css';
 import '../styles/main.css';
 
 import type { AppProps } from 'next/app';
+import { Provider } from 'overmind-react';
+
+import { store } from '@/overmind/index';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <Component {...pageProps} />
+  <Provider value={store}>
+    <Component {...pageProps} />
+  </Provider>
 );
 
 export default MyApp;

@@ -22,9 +22,13 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.10",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "next": "^13.1.1",
     "next-seo": "^5.15.0",
     "next-sitemap": "^3.1.45",
+    "overmind": "^28.0.2",
+    "overmind-react": "^29.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
