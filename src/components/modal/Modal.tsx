@@ -14,11 +14,19 @@ type IModalProps = {
   children: ReactNode;
   name: string;
   closeButton?: ICloseButtonProps;
+  onClose?: () => void;
 };
 
 const Modal = (props: IModalProps) => {
   const { modal } = useState();
   const { hideModal } = useActions();
+
+  const onModalClose = () => {
+    hideModal();
+    if (props.onClose) {
+      props?.onClose();
+    }
+  };
 
   return (
     <Transition
@@ -29,7 +37,7 @@ const Modal = (props: IModalProps) => {
       <Dialog
         as="div"
         className="fixed inset-0 z-20 overflow-y-auto"
-        onClose={hideModal}
+        onClose={onModalClose}
       >
         <div className="min-h-screen px-4 text-center">
           <Transition.Child
@@ -63,9 +71,7 @@ const Modal = (props: IModalProps) => {
             <div className="inline-block text-center align-middle transition-all">
               <button
                 className="absolute -top-10 right-0 z-20 outline-none"
-                onClick={() => {
-                  hideModal();
-                }}
+                onClick={onModalClose}
               >
                 <IoClose
                   size={32}

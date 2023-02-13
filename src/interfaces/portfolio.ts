@@ -7,4 +7,6 @@ export interface IPortfolio {
   description: string;
   stack: string;
   image: string;
+  role: string;
+  url: string;
 }

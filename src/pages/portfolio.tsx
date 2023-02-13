@@ -14,6 +14,7 @@ import {
 import { Modal } from '@/components/modal';
 import menuData from '@/data/menu';
 import portfolioData from '@/data/portfolio';
+import type { IPortfolio } from '@/interfaces/portfolio';
 import { Meta } from '@/layouts/Meta';
 import { useActions } from '@/overmind/index';
 import { Tokyo } from '@/templates/Tokyo';
@@ -25,12 +26,18 @@ const News = () => {
   const { showModal } = useActions();
 
   const [selectedProject, setSelectedProject] = React.useState(
-    portfolioData[0]
+    null as IPortfolio | null
   );
 
   const handleOnClickProject = (project: any) => {
     setSelectedProject(project);
     showModal('project-detail');
+  };
+
+  const handleOnModalClose = () => {
+    setTimeout(() => {
+      setSelectedProject(null);
+    }, 500);
   };
 
   const projectType = (type: string) => {
@@ -132,7 +139,7 @@ const News = () => {
         </div>
       </div>
 
-      <Modal name="project-detail">
+      <Modal name="project-detail" onClose={handleOnModalClose}>
         <div className="flex max-w-5xl gap-5 bg-white p-5 text-left shadow-xl">
           <div className="image relative w-2/3 overflow-hidden">
             <img
