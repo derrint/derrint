@@ -21,7 +21,7 @@ const menuData = [
     id: 4,
     href: '/gallery',
     title: 'Gallery',
-    subtitle: 'My Trips, So Far',
+    subtitle: 'My best shots, so far',
   },
   {
     id: 5,
