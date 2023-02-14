@@ -64,8 +64,13 @@
     .tokyo_tm_button{
         @apply w-full h-auto clear-both float-left;
     }
-    .tokyo_tm_button a{
+    .tokyo_tm_button a,
+    .tokyo_tm_button button{
         @apply text-white inline-block bg-black pt-[9px] pr-[40px] pb-[14px] pl-[40px] transition-all duration-300;
+    }
+    .tokyo_tm_button a:disabled,
+    .tokyo_tm_button button:disabled{
+        @apply opacity-50 text-opacity-50;
     }
     .tokyo_progress{
         @apply w-full h-auto clear-both float-left;
@@ -543,7 +548,8 @@
     body.dark .tokyo_tm_mobile_menu .menu_list ul li a{
         @apply text-white;
     }
-    body.dark .tokyo_tm_button a{
+    body.dark .tokyo_tm_button a,
+    body.dark .tokyo_tm_button button{
         @apply text-black bg-white;
     }
     body.dark .tokyo_tm_about .description .right > ul > li a{

@@ -2,7 +2,7 @@
 // ----- GLOBAL section -----
 // -----
 
-export const setLoading = async (context: any, payload: any) => {
+export const setLoading = async (context: any, payload: boolean) => {
   context.state.isLoading = payload;
 };
 

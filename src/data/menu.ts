@@ -33,7 +33,7 @@ const menuData = [
     id: 6,
     href: '/contact',
     title: 'Contact',
-    subtitle: '',
+    subtitle: 'Get in touch',
   },
 ];
 
