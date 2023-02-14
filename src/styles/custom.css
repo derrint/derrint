@@ -353,8 +353,9 @@
 .tokyo_tm_portfolio_titles {
 	white-space: nowrap;
 	background: #ffffff;
-	font-size: 18px;
-	padding: 5px 15px;
+	font-size: 18px !important;
+	padding: 5px 15px !important;
+  border-radius: 0 !important;
 	font-family: "Montserrat";
 	font-weight: 600;
 	color: #000;

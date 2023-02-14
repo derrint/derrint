@@ -2,6 +2,7 @@
 import { shuffle, uniq } from 'lodash';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { Tooltip } from 'react-tooltip';
 
 import galleryData from '@/data/gallery';
 import menuData from '@/data/menu';
@@ -40,7 +41,6 @@ const Gallery = () => {
 
   return (
     <Tokyo meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
-      <div className="tokyo_tm_portfolio_titles"></div>
       {/* GALLERY */}
       <div id="portfolio" className="tokyo_tm_section animated">
         <div className="container">
@@ -77,37 +77,48 @@ const Gallery = () => {
                 </div>
               </div>
             </div>
+
             <div className="list_wrapper float-left clear-both h-auto w-full">
               <ul className="portfolio_list gallery_zoom grid list-none grid-cols-3 gap-10">
-                {galleryFiltered.map(({ title, category, image }, idx) => {
+                {galleryFiltered.map(({ title, subtitle, image }, idx) => {
                   return (
-                    <li key={idx} className="">
+                    <li
+                      key={idx}
+                      className="hover:cursor-none"
+                      id={`tooltip-anchor-${idx}`}
+                    >
                       <div className="inner relative float-left clear-both h-auto w-full overflow-hidden">
-                        <div
-                          className="entry tokyo_tm_portfolio_animation_wrap"
-                          data-title={title}
-                          data-category={category}
-                        >
-                          <a
-                            className="popup-vimeo"
-                            href="https://vimeo.com/337293658"
-                          >
-                            <img
-                              className="min-w-full opacity-0"
-                              // src="/assets/img/thumbs/3-4.jpg"
-                              src={image}
-                              alt=""
-                            />
-                            <div
-                              className="abs_image absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
-                              // data-img-url="/assets/img/gallery/5.jpg"
-                              style={{
-                                backgroundImage: `url('${image}')`,
-                              }}
-                            ></div>
-                          </a>
+                        <div className="entry tokyo_tm_portfolio_animation_wrap">
+                          <img
+                            className="min-w-full opacity-0"
+                            // src="/assets/img/thumbs/3-4.jpg"
+                            src={image}
+                            alt=""
+                          />
+                          <div
+                            className="abs_image absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
+                            // data-img-url="/assets/img/gallery/5.jpg"
+                            style={{
+                              backgroundImage: `url('${image}')`,
+                            }}
+                          ></div>
                         </div>
                       </div>
+
+                      <Tooltip
+                        anchorId={`tooltip-anchor-${idx}`}
+                        className="tokyo_tm_portfolio_titles visible"
+                        html={`
+                          ${title}
+                          <span class="work__cat">
+                            ${subtitle}
+                          </span>
+                        `}
+                        place="bottom"
+                        float
+                        noArrow
+                        variant="light"
+                      />
                     </li>
                   );
                 })}
