@@ -11,7 +11,7 @@ import {
   TbStack2,
 } from 'react-icons/tb';
 
-import { Modal } from '@/components/modal';
+import { Modal } from '@/components/Modal';
 import menuData from '@/data/menu';
 import portfolioData from '@/data/portfolio';
 import type { IPortfolio } from '@/interfaces/portfolio';

@@ -5,17 +5,15 @@ import { IoClose } from 'react-icons/io5';
 
 import { useActions, useState } from '@/overmind/index';
 
-type ICloseButtonProps = {
-  hidden?: boolean;
-  color?: string;
-};
-
 type IModalProps = {
   children: ReactNode;
   name: string;
-  closeButton?: ICloseButtonProps;
   onClose?: () => void;
 };
+
+export const modalBgTestid = 'modal-bg';
+export const modalContainerTestid = 'modal-container';
+export const modalCloseButtonTestid = 'modal-close-button';
 
 const Modal = (props: IModalProps) => {
   const { modal } = useState();
@@ -38,6 +36,7 @@ const Modal = (props: IModalProps) => {
         as="div"
         className="fixed inset-0 z-20 overflow-y-auto"
         onClose={onModalClose}
+        data-testid={modalBgTestid}
       >
         <div className="min-h-screen px-4 text-center">
           <Transition.Child
@@ -68,15 +67,16 @@ const Modal = (props: IModalProps) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block text-center align-middle transition-all">
+            <div
+              className="inline-block text-center align-middle transition-all"
+              data-testid={modalContainerTestid}
+            >
               <button
                 className="absolute -top-10 right-0 z-20 outline-none"
                 onClick={onModalClose}
+                data-testid={modalCloseButtonTestid}
               >
-                <IoClose
-                  size={32}
-                  color={props?.closeButton?.color || '#ffffff'}
-                />
+                <IoClose size={32} color={'#ffffff'} />
               </button>
               {props.children}
             </div>
@@ -87,4 +87,4 @@ const Modal = (props: IModalProps) => {
   );
 };
 
-export { Modal };
+export default Modal;

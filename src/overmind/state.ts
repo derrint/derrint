@@ -1,7 +1,17 @@
+type IAuth = {
+  jwtToken: string | null;
+  isLoggedIn: boolean | undefined;
+};
+
+type IModal = {
+  name: string | null;
+  isVisible: boolean;
+};
+
 type State = {
   isLoading: boolean;
-  auth: any;
-  modal: any;
+  auth: IAuth;
+  modal: IModal;
   yScrollPosition: number;
 };
 
