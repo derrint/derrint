@@ -8,7 +8,7 @@ import { useActions, useState } from '@/overmind/index';
 type IModalProps = {
   children: ReactNode;
   name: string;
-  onClose?: () => void;
+  onClose: () => void;
 };
 
 export const modalBgTestid = 'modal-bg';
@@ -21,9 +21,7 @@ const Modal = (props: IModalProps) => {
 
   const onModalClose = () => {
     hideModal();
-    if (props.onClose) {
-      props?.onClose();
-    }
+    props.onClose();
   };
 
   return (
