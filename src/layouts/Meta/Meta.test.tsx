@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 
-import { Meta } from './Meta';
+import Meta from './Meta';
 
 // Mock `next/head`: https://bradgarropy.com/blog/mocking-nextjs
 jest.mock(
@@ -15,7 +15,7 @@ jest.mock(
 
 describe('Meta component', () => {
   describe('Render method', () => {
-    it('should a page title', async () => {
+    it('should defined a page title', async () => {
       const title = 'Random title';
 
       render(<Meta title={title} description="Random description" />);
