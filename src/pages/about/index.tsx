@@ -6,6 +6,9 @@ import menuData from '@/data/menu';
 import { Meta } from '@/layouts/Meta';
 import { Tokyo } from '@/templates/Tokyo';
 
+export const pageTitleTestid = 'page-title';
+export const pageSubtitleTestid = 'page-subtitle';
+
 const About = () => {
   const { pathname } = useRouter();
   const menu = menuData.find((x) => x.href === pathname);
@@ -25,10 +28,16 @@ const About = () => {
             <div className="tokyo_tm_title float-left clear-both mb-[62px] h-auto w-full">
               <div className="title_flex clear-both flex h-auto w-full items-end justify-between">
                 <div className="left">
-                  <span className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]">
+                  <span
+                    className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]"
+                    data-testid={pageTitleTestid}
+                  >
                     {menu?.title}
                   </span>
-                  <h3 className="font-montserrat font-extrabold">
+                  <h3
+                    className="font-montserrat font-extrabold"
+                    data-testid={pageSubtitleTestid}
+                  >
                     {menu?.subtitle}
                   </h3>
                 </div>
