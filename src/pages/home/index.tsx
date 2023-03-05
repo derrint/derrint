@@ -14,6 +14,7 @@ import { Tokyo } from '@/templates/Tokyo';
 
 export const pageTitleTestid = 'page-title';
 export const pageSubtitleTestid = 'page-subtitle';
+export const socialMediasTestid = 'social-medias';
 
 const Home = () => {
   const getIcon = (url: string) => {
@@ -80,7 +81,11 @@ const Home = () => {
                   <div className="social float-left w-full">
                     <ul className="m-0 list-none">
                       {homeData.socials.map((url, idx) => (
-                        <li key={idx} className="mr-3 inline-block">
+                        <li
+                          key={idx}
+                          className="mr-3 inline-block"
+                          data-testid={socialMediasTestid}
+                        >
                           <a
                             className="text-[20px] text-black transition-all duration-300 hover:text-black"
                             href={url}

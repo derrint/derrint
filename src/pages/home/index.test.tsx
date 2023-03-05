@@ -1,7 +1,11 @@
 /* eslint-disable global-require */
 import { render, screen } from '@testing-library/react';
 
-import Home, { pageSubtitleTestid, pageTitleTestid } from '@/pages/home';
+import Home, {
+  pageSubtitleTestid,
+  pageTitleTestid,
+  socialMediasTestid,
+} from '@/pages/home';
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
@@ -23,6 +27,16 @@ describe('Home page', () => {
       expect(title).toHaveTextContent('Lorensio Derrint');
       expect(subtitle).toBeInTheDocument();
       expect(subtitle).toHaveTextContent('master Front-End & Mobile');
+    });
+
+    it('should render social medias correctly', () => {
+      const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+      useRouter.mockReturnValue({ pathname: '/' });
+      render(<Home />);
+
+      const socmeds = screen.getAllByTestId(socialMediasTestid);
+
+      expect(socmeds).toHaveLength(5);
     });
   });
 });
