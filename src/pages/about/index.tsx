@@ -8,6 +8,7 @@ import { Tokyo } from '@/templates/Tokyo';
 
 export const pageTitleTestid = 'page-title';
 export const pageSubtitleTestid = 'page-subtitle';
+export const pageSectionTestid = 'page-section';
 
 const About = () => {
   const { pathname } = useRouter();
@@ -22,7 +23,7 @@ const About = () => {
     <Tokyo meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
       {/* ABOUT */}
       <div id="about" className="tokyo_tm_section animated">
-        <div className="container">
+        <div className="container" data-testid={pageSectionTestid}>
           <div className="tokyo_tm_about float-left clear-both h-auto w-full py-[100px] px-0">
             {/* ----- PAGE TITLE ----- */}
             <div className="tokyo_tm_title float-left clear-both mb-[62px] h-auto w-full">
@@ -108,7 +109,10 @@ const About = () => {
         </div>
 
         {/* ----- SKILLS ----- */}
-        <div className="tokyo_tm_progressbox float-left clear-both h-auto w-full bg-white px-[0px] pt-[93px] pb-[100px]">
+        <div
+          className="tokyo_tm_progressbox float-left clear-both h-auto w-full bg-white px-[0px] pt-[93px] pb-[100px]"
+          data-testid={pageSectionTestid}
+        >
           <div className="container">
             <div className="in float-left clear-both flex h-auto w-full">
               {/* ----- CODING SKILLS ----- */}
@@ -163,7 +167,10 @@ const About = () => {
         </div>
 
         {/* ----- KNOWLEDGE, ETC ----- */}
-        <div className="tokyo_tm_skillbox float-left clear-both h-auto w-full py-[90px] px-[0px]">
+        <div
+          className="tokyo_tm_skillbox float-left clear-both h-auto w-full py-[90px] px-[0px]"
+          data-testid={pageSectionTestid}
+        >
           <div className="container">
             <div className="in float-left clear-both flex h-auto w-full">
               {/* ----- KNOWLEDGE ----- */}
@@ -220,7 +227,10 @@ const About = () => {
         </div>
 
         {/* ----- EDUCATION & EXPERIENCE ----- */}
-        <div className="tokyo_tm_resumebox float-left clear-both h-auto w-full bg-white py-[93px] px-0">
+        <div
+          className="tokyo_tm_resumebox float-left clear-both h-auto w-full bg-white py-[93px] px-0"
+          data-testid={pageSectionTestid}
+        >
           <div className="container">
             <div className="in float-left clear-both flex h-auto w-full">
               {/* ----- EDUCATION ----- */}
@@ -305,7 +315,10 @@ const About = () => {
         </div>
 
         {/* ----- TESTIMONIALS ----- */}
-        <div className="tokyo_tm_testimonials float-left clear-both h-auto w-full py-[100px] px-0">
+        <div
+          className="tokyo_tm_testimonials float-left clear-both h-auto w-full py-[100px] px-0"
+          data-testid={pageSectionTestid}
+        >
           <div className="container">
             <div className="tokyo_section_title float-left clear-both mb-[40px] h-auto w-full">
               <h3 className="text-[20px] font-bold">
