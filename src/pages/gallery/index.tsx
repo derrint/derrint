@@ -9,6 +9,11 @@ import menuData from '@/data/menu';
 import { Meta } from '@/layouts/Meta';
 import { Tokyo } from '@/templates/Tokyo';
 
+export const pageTitleTestid = 'page-title';
+export const pageSubtitleTestid = 'page-subtitle';
+export const categoriesTestid = 'categories';
+export const galleryTestid = 'gallery';
+
 const Gallery = () => {
   const { pathname } = useRouter();
   const menu = menuData.find((x) => x.href === pathname);
@@ -48,10 +53,16 @@ const Gallery = () => {
             <div className="tokyo_tm_title float-left clear-both mb-[62px] h-auto w-full">
               <div className="title_flex clear-both flex h-auto w-full items-end justify-between">
                 <div className="left">
-                  <span className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]">
+                  <span
+                    className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]"
+                    data-testid={pageTitleTestid}
+                  >
                     {menu?.title}
                   </span>
-                  <h3 className="font-montserrat font-extrabold">
+                  <h3
+                    className="font-montserrat font-extrabold"
+                    data-testid={pageSubtitleTestid}
+                  >
                     {menu?.subtitle}
                   </h3>
                 </div>
@@ -67,6 +78,7 @@ const Gallery = () => {
                                 : 'text-[#767676]'
                             }`}
                             onClick={() => handleOnCategoryClick(item)}
+                            data-testid={categoriesTestid}
                           >
                             {item}
                           </a>
@@ -86,6 +98,7 @@ const Gallery = () => {
                       key={idx}
                       className="hover:cursor-none"
                       id={`tooltip-anchor-${idx}`}
+                      data-testid={galleryTestid}
                     >
                       <div className="inner relative float-left clear-both h-auto w-full overflow-hidden">
                         <div className="entry tokyo_tm_portfolio_animation_wrap">
