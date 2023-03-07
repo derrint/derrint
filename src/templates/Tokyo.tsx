@@ -11,11 +11,16 @@ type IMainProps = {
   children: ReactNode;
 };
 
+export const pageTemplateTestid = 'page-template';
+
 const Tokyo = (props: IMainProps) => {
   const router = useRouter();
 
   return (
-    <div className="w-full px-1 text-gray-700 antialiased">
+    <div
+      className="w-full px-1 text-gray-700 antialiased"
+      data-testid={pageTemplateTestid}
+    >
       {props.meta}
 
       {/* WRAPPER ALL */}
