@@ -1,4 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+import { has } from 'lodash';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -7,6 +8,19 @@ import menuData from '@/data/menu';
 import { Meta } from '@/layouts/Meta';
 import { useActions, useState } from '@/overmind';
 import { Tokyo } from '@/templates/Tokyo';
+
+export const pageTitleTestid = 'page-title';
+export const pageSubtitleTestid = 'page-subtitle';
+export const formTestid = 'form';
+export const formValidationMessage = 'form-validation-message';
+export const formNameTestid = 'form-name';
+export const formEmailTestid = 'form-email';
+export const formMessageTestid = 'form-message';
+export const formSubmitButtonTestid = 'form-submit-button';
+export const formSubmitResultTestid = 'form-submit-result';
+
+export const contactFormURL = 'https://formspree.io/f/mnqypwrw';
+export const fakeContactFormURL = 'https://formspree.io/f/mnqypwrwXXX';
 
 const Contact = () => {
   const { pathname } = useRouter();
@@ -37,7 +51,7 @@ const Contact = () => {
   const onSubmit = (data: any) => {
     setSubmitResultMessage('');
     setLoading(true);
-    fetch('https://formspree.io/f/mnqypwrw', {
+    fetch(contactFormURL, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -49,23 +63,26 @@ const Contact = () => {
           const message = 'Thanks for your submission!';
           setSubmitResultMessage(message);
         } else {
-          response.json().then((responseData) => {
-            if (Object.hasOwn(responseData, 'errors')) {
-              const message = responseData.errors
-                .map((error: any) => error.message)
-                .join(', ');
-              setSubmitResultMessage(message);
-            } else {
+          response
+            .json()
+            .then((responseData) => {
+              if (has(responseData, 'errors')) {
+                const message = responseData.errors
+                  .map((error: any) => error.message)
+                  .join(', ');
+                setSubmitResultMessage(message);
+              }
+            })
+            .catch(() => {
               const message = 'Oops! There was a problem submitting your form';
               setSubmitResultMessage(message);
-            }
-          });
+            });
         }
         setLoading(false);
         resetAll();
       })
       .catch((error) => {
-        const message = `Oops! There was a problem submitting your form - ${error}`;
+        const message = `Oops! Something wrong happened - ${error}`;
         setSubmitResultMessage(message);
         setLoading(false);
         resetAll();
@@ -85,10 +102,16 @@ const Contact = () => {
             <div className="tokyo_tm_title float-left clear-both mb-[62px] h-auto w-full">
               <div className="title_flex clear-both flex h-auto w-full items-end justify-between">
                 <div className="left">
-                  <span className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]">
+                  <span
+                    className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]"
+                    data-testid={pageTitleTestid}
+                  >
                     {menu?.title}
                   </span>
-                  <h3 className="font-montserrat font-extrabold">
+                  <h3
+                    className="font-montserrat font-extrabold"
+                    data-testid={pageSubtitleTestid}
+                  >
                     {menu?.subtitle}
                   </h3>
                 </div>
@@ -116,6 +139,8 @@ const Contact = () => {
                 className="contact_form"
                 id="contact_form"
                 autoComplete="off"
+                data-testid={formTestid}
+                method="POST"
               >
                 <div
                   className="returnmessage"
@@ -132,6 +157,7 @@ const Contact = () => {
                         ? 'opacity-100'
                         : 'opacity-0'
                     }`}
+                  data-testid={formValidationMessage}
                 >
                   <span>Please Fill Required Fields</span>
                 </div>
@@ -144,6 +170,7 @@ const Contact = () => {
                         type="text"
                         placeholder="Name"
                         className={errors.name ? '!border-red-300' : ''}
+                        data-testid={formNameTestid}
                         {...register('name', { required: true })}
                       />
                     </li>
@@ -153,6 +180,7 @@ const Contact = () => {
                         type="text"
                         placeholder="Email"
                         className={errors.email ? '!border-red-300' : ''}
+                        data-testid={formEmailTestid}
                         {...register('email', {
                           required: true,
                           // eslint-disable-next-line no-useless-escape
@@ -167,6 +195,7 @@ const Contact = () => {
                     id="message"
                     placeholder="Message"
                     className={errors.message ? '!border-red-300' : ''}
+                    data-testid={formMessageTestid}
                     {...register('message', { required: true })}
                   ></textarea>
                 </div>
@@ -174,7 +203,12 @@ const Contact = () => {
                   className="tokyo_tm_button flex items-center gap-5"
                   data-position="left"
                 >
-                  <button type="submit" id="send_message" disabled={isLoading}>
+                  <button
+                    type="submit"
+                    id="send_message"
+                    disabled={isLoading}
+                    data-testid={formSubmitButtonTestid}
+                  >
                     <span>Send Message</span>
                   </button>
 
@@ -186,6 +220,7 @@ const Contact = () => {
                     transition-all duration-300 ${
                       submitResultMessage ? 'opacity-100' : 'opacity-0'
                     }`}
+                    data-testid={formSubmitResultTestid}
                   >
                     <span>{submitResultMessage}</span>
                   </div>
