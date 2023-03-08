@@ -40,7 +40,7 @@ const Home = () => {
       meta={
         <Meta
           title="Home || LDYN"
-          description="I'm a creative Software Engineer with a great willingness
+          description="Hi, welcome to my site 👋🏻 I'm a creative Software Engineer with a great willingness
           to learn and master Front-End & Mobile Development."
         />
       }

@@ -20,7 +20,14 @@ const About = () => {
   const secondHalfOfInfo = aboutData.info.slice(halfOfInfo);
 
   return (
-    <Tokyo meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
+    <Tokyo
+      meta={
+        <Meta
+          title="About || LDYN"
+          description="A few details about me, including: my personal info, skills, knowledge, and education."
+        />
+      }
+    >
       {/* ABOUT */}
       <div id="about" className="tokyo_tm_section animated">
         <div className="container" data-testid={pageSectionTestid}>

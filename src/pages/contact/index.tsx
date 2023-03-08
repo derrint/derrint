@@ -94,7 +94,14 @@ const Contact = () => {
   }, []);
 
   return (
-    <Tokyo meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
+    <Tokyo
+      meta={
+        <Meta
+          title="Contact || LDYN"
+          description="Have something to ask? Kindly drop me a message."
+        />
+      }
+    >
       {/* CONTACT */}
       <div id="contact" className="tokyo_tm_section animated">
         <div className="container">

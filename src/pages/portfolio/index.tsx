@@ -68,7 +68,14 @@ const Portfolio = () => {
   };
 
   return (
-    <Tokyo meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
+    <Tokyo
+      meta={
+        <Meta
+          title="Gallery || LDYN"
+          description="Some of my latest projects. Grateful to have contributed to those."
+        />
+      }
+    >
       {/* PORTFOLIO */}
       <div id="news" className="tokyo_tm_section animated">
         <div className="container">

@@ -45,7 +45,14 @@ const Gallery = () => {
   }, [selectedCategory]);
 
   return (
-    <Tokyo meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
+    <Tokyo
+      meta={
+        <Meta
+          title="Gallery || LDYN"
+          description="Do you love to wander around? I hope so. Let's explore the world!"
+        />
+      }
+    >
       {/* GALLERY */}
       <div id="portfolio" className="tokyo_tm_section animated">
         <div className="container">
