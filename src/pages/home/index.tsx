@@ -72,31 +72,35 @@ const Home = () => {
                       {homeData.name}
                     </Fade>
                   </h3>
-                  <p
-                    className="job mb-[25px] max-w-[450px] font-montserrat font-medium"
-                    data-testid={pageSubtitleTestid}
-                  >
-                    {homeData.description}
-                  </p>
+                  <Fade bottom delay={500}>
+                    <p
+                      className="job mb-[25px] max-w-[450px] font-montserrat font-medium"
+                      data-testid={pageSubtitleTestid}
+                    >
+                      {homeData.description}
+                    </p>
+                  </Fade>
                   <div className="social float-left w-full">
-                    <ul className="m-0 list-none">
-                      {homeData.socials.map((url, idx) => (
-                        <li
-                          key={idx}
-                          className="mr-3 inline-block"
-                          data-testid={socialMediasTestid}
-                        >
-                          <a
-                            className="text-[20px] text-black transition-all duration-300 hover:text-black"
-                            href={url}
-                            target="_blank"
-                            rel="noreferrer"
+                    <Fade bottom delay={1000} cascade>
+                      <ul className="m-0 list-none">
+                        {homeData.socials.map((url, idx) => (
+                          <li
+                            key={idx}
+                            className="mr-3 inline-block"
+                            data-testid={socialMediasTestid}
                           >
-                            {getIcon(url)}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                            <a
+                              className="text-[20px] text-black transition-all duration-300 hover:text-black"
+                              href={url}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {getIcon(url)}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </Fade>
                   </div>
                 </div>
               </div>
