@@ -2,6 +2,7 @@
 import { shuffle, uniq } from 'lodash';
 import { useRouter } from 'next/router';
 import React from 'react';
+import Fade from 'react-reveal/Fade';
 import { Tooltip } from 'react-tooltip';
 
 import galleryData from '@/data/gallery';
@@ -60,89 +61,97 @@ const Gallery = () => {
             <div className="tokyo_tm_title float-left clear-both mb-[62px] h-auto w-full">
               <div className="title_flex clear-both flex h-auto w-full items-end justify-between">
                 <div className="left">
-                  <span
-                    className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]"
-                    data-testid={pageTitleTestid}
-                  >
-                    {menu?.title}
-                  </span>
-                  <h3
-                    className="font-montserrat font-extrabold"
-                    data-testid={pageSubtitleTestid}
-                  >
-                    {menu?.subtitle}
-                  </h3>
+                  <Fade left>
+                    <span
+                      className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]"
+                      data-testid={pageTitleTestid}
+                    >
+                      {menu?.title}
+                    </span>
+                  </Fade>
+                  <Fade left cascade duration={500} delay={250}>
+                    <h3
+                      className="font-montserrat font-extrabold"
+                      data-testid={pageSubtitleTestid}
+                    >
+                      {menu?.subtitle}
+                    </h3>
+                  </Fade>
                 </div>
                 <div className="portfolio_filter">
-                  <ul className="list-none">
-                    {categories.map((item) => {
-                      return (
-                        <li key={item} className="mr-[25px] inline-block">
-                          <a
-                            className={`inline-block cursor-pointer font-montserrat font-medium  capitalize transition-all duration-300 hover:text-black ${
-                              selectedCategory === item
-                                ? 'text-black'
-                                : 'text-[#767676]'
-                            }`}
-                            onClick={() => handleOnCategoryClick(item)}
-                            data-testid={categoriesTestid}
-                          >
-                            {item}
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <Fade bottom delay={500} cascade>
+                    <ul className="list-none">
+                      {categories.map((item) => {
+                        return (
+                          <li key={item} className="mr-[25px] inline-block">
+                            <a
+                              className={`inline-block cursor-pointer font-montserrat font-medium  capitalize transition-all duration-300 hover:text-black ${
+                                selectedCategory === item
+                                  ? 'text-black'
+                                  : 'text-[#767676]'
+                              }`}
+                              onClick={() => handleOnCategoryClick(item)}
+                              data-testid={categoriesTestid}
+                            >
+                              {item}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </Fade>
                 </div>
               </div>
             </div>
 
             <div className="list_wrapper float-left clear-both h-auto w-full">
-              <ul className="portfolio_list gallery_zoom grid list-none grid-cols-3 gap-10">
-                {galleryFiltered.map(({ title, subtitle, image }, idx) => {
-                  return (
-                    <li
-                      key={idx}
-                      className="hover:cursor-none"
-                      id={`tooltip-anchor-${idx}`}
-                      data-testid={galleryTestid}
-                    >
-                      <div className="inner relative float-left clear-both h-auto w-full overflow-hidden">
-                        <div className="entry tokyo_tm_portfolio_animation_wrap">
-                          <img
-                            className="min-w-full opacity-0"
-                            // src="/assets/img/thumbs/3-4.jpg"
-                            src={image}
-                            alt=""
-                          />
-                          <div
-                            className="abs_image absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
-                            // data-img-url="/assets/img/gallery/5.jpg"
-                            style={{
-                              backgroundImage: `url('${image}')`,
-                            }}
-                          ></div>
+              <Fade bottom delay={750} cascade>
+                <ul className="portfolio_list gallery_zoom grid list-none grid-cols-3 gap-10">
+                  {galleryFiltered.map(({ title, subtitle, image }, idx) => {
+                    return (
+                      <li
+                        key={idx}
+                        className="hover:cursor-none"
+                        id={`tooltip-anchor-${idx}`}
+                        data-testid={galleryTestid}
+                      >
+                        <div className="inner relative float-left clear-both h-auto w-full overflow-hidden">
+                          <div className="entry tokyo_tm_portfolio_animation_wrap">
+                            <img
+                              className="min-w-full opacity-0"
+                              // src="/assets/img/thumbs/3-4.jpg"
+                              src={image}
+                              alt=""
+                            />
+                            <div
+                              className="abs_image absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
+                              // data-img-url="/assets/img/gallery/5.jpg"
+                              style={{
+                                backgroundImage: `url('${image}')`,
+                              }}
+                            ></div>
+                          </div>
                         </div>
-                      </div>
 
-                      <Tooltip
-                        anchorId={`tooltip-anchor-${idx}`}
-                        className="tokyo_tm_portfolio_titles visible"
-                        html={`
+                        <Tooltip
+                          anchorId={`tooltip-anchor-${idx}`}
+                          className="tokyo_tm_portfolio_titles visible"
+                          html={`
                           ${title}
                           <span class="work__cat">
                             ${subtitle}
                           </span>
                         `}
-                        place="bottom"
-                        float
-                        noArrow
-                        variant="light"
-                      />
-                    </li>
-                  );
-                })}
-              </ul>
+                          place="bottom"
+                          float
+                          noArrow
+                          variant="light"
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Fade>
             </div>
           </div>
         </div>

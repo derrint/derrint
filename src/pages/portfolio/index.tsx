@@ -10,6 +10,7 @@ import {
   TbExternalLink,
   TbStack2,
 } from 'react-icons/tb';
+import Fade from 'react-reveal/Fade';
 
 import { Modal } from '@/components/Modal';
 import menuData from '@/data/menu';
@@ -83,82 +84,88 @@ const Portfolio = () => {
             <div className="tokyo_tm_title float-left clear-both mb-[62px] h-auto w-full">
               <div className="title_flex clear-both flex h-auto w-full items-end justify-between">
                 <div className="left">
-                  <span
-                    className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]"
-                    data-testid={pageTitleTestid}
-                  >
-                    {menu?.title}
-                  </span>
-                  <h3
-                    className="font-montserrat font-extrabold"
-                    data-testid={pageSubtitleTestid}
-                  >
-                    {menu?.subtitle}
-                  </h3>
+                  <Fade left>
+                    <span
+                      className="mb-[11px] inline-block bg-[rgba(0,0,0,.04)] py-[4px] px-[10px] font-montserrat text-[12px] font-semibold uppercase tracking-[0px] text-[#333]"
+                      data-testid={pageTitleTestid}
+                    >
+                      {menu?.title}
+                    </span>
+                  </Fade>
+                  <Fade left cascade duration={500} delay={250}>
+                    <h3
+                      className="font-montserrat font-extrabold"
+                      data-testid={pageSubtitleTestid}
+                    >
+                      {menu?.subtitle}
+                    </h3>
+                  </Fade>
                 </div>
               </div>
             </div>
-            <ul className="ml-[-50px] list-none">
-              {portfolioData.map((project) => {
-                const { icon, label } = projectType(project.type);
+            <Fade bottom delay={750} cascade>
+              <ul className="ml-[-50px] list-none">
+                {portfolioData.map((project) => {
+                  const { icon, label } = projectType(project.type);
 
-                return (
-                  <li
-                    key={project.id}
-                    className="float-left mb-[50px] w-1/2 pl-[50px]"
-                    data-testid={portfoliosTestid}
-                  >
-                    <div className="list_inner relative float-left clear-both h-auto w-full">
-                      <div className="image relative overflow-hidden">
-                        <img
-                          className="min-w-full opacity-0"
-                          src={project.images[0]}
-                          alt=""
-                        />
-                        <div
-                          className="main absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
-                          // data-img-url="/assets/img/news/1.jpg"
-                          style={{
-                            backgroundImage: `url('${project.images[0]}')`,
-                          }}
-                        ></div>
-                        <a
-                          className="tokyo_tm_full_link cursor-pointer"
-                          onClick={() => handleOnClickProject(project)}
-                          data-testid={portfolioButtonsTestid}
-                        ></a>
-                      </div>
-                      <div className="details float-left w-full bg-white px-[40px] pt-[30px] pb-[25px] transition-all duration-300">
-                        <div className="extra relative mb-[25px] flex items-center justify-start gap-2 font-montserrat text-[13px] text-[#767676]">
-                          <span>{icon}</span>
-                          <span>{label}</span>
-                          <span>&frasl;</span>
-                          <span>{project.year}</span>
-                        </div>
-                        <h3 className="title mb-[10px] leading-[1.4]">
+                  return (
+                    <li
+                      key={project.id}
+                      className="float-left mb-[50px] w-1/2 pl-[50px]"
+                      data-testid={portfoliosTestid}
+                    >
+                      <div className="list_inner relative float-left clear-both h-auto w-full">
+                        <div className="image relative overflow-hidden">
+                          <img
+                            className="min-w-full opacity-0"
+                            src={project.images[0]}
+                            alt=""
+                          />
+                          <div
+                            className="main absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
+                            // data-img-url="/assets/img/news/1.jpg"
+                            style={{
+                              backgroundImage: `url('${project.images[0]}')`,
+                            }}
+                          ></div>
                           <a
-                            className="cursor-pointer text-[18px] font-semibold text-black transition-all duration-300 line-clamp-2 hover:text-black"
+                            className="tokyo_tm_full_link cursor-pointer"
                             onClick={() => handleOnClickProject(project)}
                             data-testid={portfolioButtonsTestid}
-                          >
-                            {project.description}
-                          </a>
-                        </h3>
-                        <div className="tokyo_tm_read_more">
-                          <a
-                            className="cursor-pointer"
-                            onClick={() => handleOnClickProject(project)}
-                            data-testid={portfolioButtonsTestid}
-                          >
-                            <span>Read More</span>
-                          </a>
+                          ></a>
+                        </div>
+                        <div className="details float-left w-full bg-white px-[40px] pt-[30px] pb-[25px] transition-all duration-300">
+                          <div className="extra relative mb-[25px] flex items-center justify-start gap-2 font-montserrat text-[13px] text-[#767676]">
+                            <span>{icon}</span>
+                            <span>{label}</span>
+                            <span>&frasl;</span>
+                            <span>{project.year}</span>
+                          </div>
+                          <h3 className="title mb-[10px] leading-[1.4]">
+                            <a
+                              className="cursor-pointer text-[18px] font-semibold text-black transition-all duration-300 line-clamp-2 hover:text-black"
+                              onClick={() => handleOnClickProject(project)}
+                              data-testid={portfolioButtonsTestid}
+                            >
+                              {project.description}
+                            </a>
+                          </h3>
+                          <div className="tokyo_tm_read_more">
+                            <a
+                              className="cursor-pointer"
+                              onClick={() => handleOnClickProject(project)}
+                              data-testid={portfolioButtonsTestid}
+                            >
+                              <span>Read More</span>
+                            </a>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Fade>
           </div>
         </div>
       </div>
