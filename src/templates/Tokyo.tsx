@@ -12,6 +12,9 @@ type IMainProps = {
 };
 
 export const pageTemplateTestid = 'page-template';
+export const pageContentTestid = 'page-content';
+export const mobileMenusTestid = 'mobile-menus';
+export const desktopMenusTestid = 'desktop-menus';
 
 const Tokyo = (props: IMainProps) => {
   const router = useRouter();
@@ -49,7 +52,7 @@ const Tokyo = (props: IMainProps) => {
                   alt=""
                 />
                 <h3 className="font-poppins text-[25px] font-black tracking-[4px]">
-                  TOKYO
+                  LDYN
                 </h3>
               </a>
             </div>
@@ -62,6 +65,7 @@ const Tokyo = (props: IMainProps) => {
             </div>
           </div>
         </div>
+
         <div className="tokyo_tm_mobile_menu fixed top-[50px] right-[-200px] z-[15] h-[100vh] w-[200px] bg-white transition-all duration-300">
           <div className="menu_list float-left clear-both h-auto w-full px-[20px] pt-[100px] pb-[0px] text-right">
             <ul className="transition_link list-none">
@@ -71,6 +75,7 @@ const Tokyo = (props: IMainProps) => {
                   className={`mb-[7px] ${
                     router.pathname === href ? 'active' : ''
                   }`}
+                  data-testid={mobileMenusTestid}
                 >
                   <a className="font-montserrat text-black" href={href}>
                     {title}
@@ -107,6 +112,7 @@ const Tokyo = (props: IMainProps) => {
                     className={`float-left m-0 w-full ${
                       router.pathname === href ? 'active' : ''
                     }`}
+                    data-testid={desktopMenusTestid}
                   >
                     <Link
                       className="inline-block font-montserrat font-medium text-[#767676] transition-all duration-300 hover:text-black"
@@ -129,7 +135,10 @@ const Tokyo = (props: IMainProps) => {
 
         {/* RIGHTPART */}
         <div className="rightpart relative float-left min-h-[100vh] w-full bg-[#f8f8f8] pl-[450px]">
-          <div className="rightpart_in relative float-left clear-both min-h-[100vh] w-full border-l border-solid border-[#ebebeb]">
+          <div
+            className="rightpart_in relative float-left clear-both min-h-[100vh] w-full border-l border-solid border-[#ebebeb]"
+            data-testid={pageContentTestid}
+          >
             {props.children}
           </div>
         </div>
