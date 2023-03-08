@@ -88,7 +88,7 @@ describe('Portfolio page', () => {
     });
   });
 
-  describe('Actions', () => {
+  describe('Page interactions', () => {
     it("should show modal when the portfolio's image is clicked", async () => {
       const useRouter = jest.spyOn(require('next/router'), 'useRouter');
       useRouter.mockReturnValue({ pathname: '/portfolio' });

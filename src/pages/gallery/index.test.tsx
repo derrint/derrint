@@ -60,7 +60,9 @@ describe('Gallery page', () => {
 
       expect(gallery).toHaveLength(48);
     });
+  });
 
+  describe('Page interactions', () => {
     it('should display active category alongside with the gallery correctly', async () => {
       const useRouter = jest.spyOn(require('next/router'), 'useRouter');
       useRouter.mockReturnValue({ pathname: '/gallery' });
