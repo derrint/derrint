@@ -12,7 +12,7 @@ import {
 } from 'react-icons/tb';
 import Fade from 'react-reveal/Fade';
 
-import Modal from '@/components/Modal/Modal';
+import { Modal } from '@/components/Modal';
 import menuData from '@/data/menu';
 import portfolioData from '@/data/portfolio';
 import type { IPortfolio } from '@/interfaces/portfolio';
