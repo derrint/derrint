@@ -2,8 +2,13 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Itinerary Bali & Banyuwangi</title>
     <style>
+      html {
+        font-size: 18px; /* bump base size slightly */
+      }
+
       body {
         font-family: "Segoe UI", sans-serif;
         background: #fff8f0;
@@ -12,20 +17,29 @@
         max-width: 800px;
         margin: auto;
         box-sizing: border-box;
+        line-height: 1.6;
       }
 
-      h1,
+      h1 {
+        text-align: center;
+        color: #d95f00;
+        font-size: 1.8em;
+        margin: 0.8em 0 0.3em;
+      }
+
+      p {
+        text-align: center;
+        font-size: 1em;
+        margin-top: -0.3em;
+      }
+
       h2 {
         text-align: center;
         color: #d95f00;
-        margin: 0.5em 0;
-      }
-
-      h2 {
         background: #fff0e0;
         padding: 0.8em;
         border-radius: 12px;
-        margin-top: 2.5em;
+        margin-top: 2em;
         font-size: 1.3em;
       }
 
@@ -51,50 +65,40 @@
       }
 
       .emoji {
-        font-size: 1.3em;
+        font-size: 1.4em;
         margin-right: 6px;
       }
 
       .link {
         display: block;
-        font-size: 0.9em;
+        font-size: 0.95em;
         color: #0077cc;
-        margin-top: 0.4em;
+        margin-top: 0.3em;
         word-break: break-word;
       }
 
-      p {
-        text-align: center;
-        font-size: 1em;
-        margin-top: -0.5em;
-      }
-
-      /* Responsive tweaks */
+      /* Responsive: small devices */
       @media (max-width: 600px) {
-        body {
-          padding: 4vw;
+        html {
+          font-size: 19px;
         }
 
         h1 {
-          font-size: 1.5em;
+          font-size: 1.7em;
         }
 
         h2 {
-          font-size: 1.1em;
-          padding: 0.6em;
+          font-size: 1.25em;
         }
 
+        .time,
         .desc,
-        .time {
-          font-size: 0.95em;
-        }
-
         .link {
-          font-size: 0.85em;
+          font-size: 1em;
         }
 
         .emoji {
-          font-size: 1.2em;
+          font-size: 1.4em;
         }
       }
     </style>
