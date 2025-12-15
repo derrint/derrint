@@ -1,15 +1,23 @@
+import { calculateAge, calculateYearsOfExperience } from '@/utils/helper';
+
+// Birth date: Adjust this to the actual birth date
+const birthDate = new Date(1994, 7, 10);
+
 const aboutData = {
   banner: '/assets/img/slider/IMG_9390.jpg',
   name: 'Lorensio Derrint',
   role: 'Software Engineer',
   description: [
-    `Hi, I'm Lorensio Derrint, a creative Software Engineer with 10+ years of practical experience in various programming languages & technology, such as Javascript / Typescript, React / React Native, HTML / CSS, PHP / MySQL areas with a willingness to learn and master Front-End & Mobile Development.`,
-    `I have been designed, developed, and maintained more than 50, small to extensive-scale, web & mobile based applications, in wide variety of project industries, such as Automotive, Event Producers, Marketplace, NFT & Blockchain, Broadcasting, Finance, Travel & Tourism, and Hospitality.`,
+    `Hi, I'm Lorensio Derrint, a Senior Software Engineer and creative problem-solver with 13+ years of success in delivering robust, user-centric solutions.`,
+
+    `I specialize in high-performance Front-End and Mobile Development, leveraging a deep tech stack including JavaScript / TypeScript, React / React Native, HTML / CSS, PHP, and MySQL.`,
+
+    `My seniority spans the entire development lifecycle, having successfully designed, developed, and maintained over 50 web and mobile applications for diverse sectors. I have driven impact across a wide range of critical industries, including Health-Care, Education-Tech, Automotive, Marketplace, NFT & Blockchain, Broadcasting, Finance, Travel & Tourism, and Hospitality`,
   ],
   info: [
     {
       label: 'Age',
-      value: '28',
+      value: calculateAge(birthDate),
     },
 
     {
@@ -53,20 +61,28 @@ const aboutData = {
     title: 'Coding Skills',
     items: [
       {
-        label: 'JavaScript, TypeScript, ES6+',
-        value: '5+ years',
+        label: 'JavaScript, TypeScript, React, React Native, Next.js',
+        value: calculateYearsOfExperience(2020),
       },
       {
-        label: 'React, React Native, NextJS, Sass',
-        value: '3+ years',
+        label: 'Redux, Zustand, RESTful API',
+        value: calculateYearsOfExperience(2021),
       },
       {
-        label: 'HTML5, CSS3',
-        value: '10+ years',
+        label: 'HTML5, CSS3, Responsive UI',
+        value: calculateYearsOfExperience(2012),
       },
       {
-        label: 'PHP, MySQL',
-        value: '7+ years',
+        label: 'Bootstrap, Tailwind, ChakraUI, PostCSS',
+        value: calculateYearsOfExperience(2019),
+      },
+      {
+        label: 'Jest, RTL, Enzyme',
+        value: calculateYearsOfExperience(2022),
+      },
+      {
+        label: 'Git, GitFlow, ESLint',
+        value: calculateYearsOfExperience(2019),
       },
     ],
   },
@@ -90,21 +106,23 @@ const aboutData = {
   knowledge: {
     title: 'Knowledge',
     items: [
-      'Bootstrap, Tailwind, ChakraUI, PostCSS',
-      'Jest, RTL, Enzyme',
+      'React ecosystem and modern frontend architecture',
+      'Design systems & component-based architecture',
+      'UI/UX principles and accessibility standards',
+      'Responsive design principles',
+      'Agile / Scrum development processes',
       'App Store & Play Store Publishing',
-      'Basic Web, App, & Print Design',
-      'Vue, Angular',
     ],
   },
   softSkills: {
     title: 'Soft Skills',
     items: [
-      'Autonomously',
+      'Ability to work autonomously',
       'Creative',
-      'Attention to Detail',
-      'Passionate & Responsible',
-      'Good Communicator & Team Player',
+      'High attention to detail',
+      'Cross-functional collaboration with Designers, BE, PM',
+      'Thriving in fast-paced, collaborative environments',
+      'Strong ownership mindset in delivering seamless UX',
     ],
   },
   education: {
@@ -126,9 +144,14 @@ const aboutData = {
     title: 'Experience',
     items: [
       {
-        label: '2022 - Present',
+        label: '2024 - Present',
+        value: 'Kangaroo Health Inc.',
+        description: 'Senior Software Engineer',
+      },
+      {
+        label: '2022 - 2024',
         value: 'PT Quipper Edukasi Indonesia',
-        description: 'Software Engineer',
+        description: 'Senior Software Engineer',
       },
       {
         label: '2021 - 2022',

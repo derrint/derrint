@@ -97,7 +97,7 @@ const About = () => {
                         {info.map(({ label, value, isURL, action }, idx2) => (
                           <li key={idx2} className="m-0">
                             <span className="float-left mr-[10px] min-w-[100px] font-bold text-black">
-                              {label}:
+                              {label}{' '}
                             </span>
                             <span>
                               {isURL ? (

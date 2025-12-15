@@ -1,7 +1,7 @@
 const homeData = {
-  image: '/assets/img/cv/foto-derrint.jpg',
+  image: '/assets/img/cv/foto-derrint-10-square-cropped-2.jpg',
   name: 'Lorensio Derrint',
-  description: `I'm a creative Software Engineer with a great willingness to learn and master Front-End & Mobile Development.`,
+  description: `I'm a Senior Software Engineer who loves building sleek stuff on the Front-End and Mobile. Always learning, always making things better! 🚀`,
   socials: [
     'https://github.com/derrint',
     'https://www.instagram.com/lorensioderrint/',
