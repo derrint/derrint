@@ -6,7 +6,7 @@ const birthDate = new Date(1994, 7, 10);
 const aboutData = {
   banner: '/assets/img/slider/IMG_9390.jpg',
   name: 'Lorensio Derrint',
-  role: 'Software Engineer',
+  role: 'Senior Software Engineer',
   description: [
     `Hi, I'm Lorensio Derrint, a Senior Software Engineer and creative problem-solver with 13+ years of success in delivering robust, user-centric solutions.`,
 
