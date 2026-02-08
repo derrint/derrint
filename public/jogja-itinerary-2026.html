@@ -1,286 +1,246 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Itinerary Jogja</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogja Trip Itinerary</title>
 
-    <style>
-      :root {
-        --bg-main: #eef3ee;
-        --bg-card: #ffffff;
-        --green-primary: #4f6f52;
-        --green-accent: #8aa37b;
-        --green-soft: #dde7dd;
-        --note-bg: #f1f6f2;
-        --note-border: #9ab79a;
-        --text-main: #2f3b2f;
-        --text-muted: #667566;
-        --link-color: #4f7c5f;
-      }
+  <style>
+    :root {
+      --bg-main: #eef3ee;
+      --bg-card: #ffffff;
+      --green-primary: #4f6f52;
+      --green-accent: #8aa37b;
+      --green-soft: #dde7dd;
+      --note-bg: #f1f6f2;
+      --note-border: #9ab79a;
+      --text-main: #2f3b2f;
+      --text-muted: #667566;
+      --link-color: #4f7c5f;
+    }
 
-      body {
-        font-family: "Segoe UI", sans-serif;
-        background: var(--bg-main);
-        color: var(--text-main);
-        padding: 5vw;
-        max-width: 850px;
-        margin: auto;
-      }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      padding: 5vw;
+      max-width: 860px;
+      margin: auto;
+    }
 
-      h1,
-      h2 {
-        text-align: center;
-        color: var(--green-primary);
-        animation: fadeDown 0.8s ease both;
-      }
+    h1, h2 {
+      text-align: center;
+      color: var(--green-primary);
+      animation: fadeDown .8s ease both;
+    }
 
-      h2 {
-        background: var(--green-soft);
-        padding: 0.9em;
-        border-radius: 16px;
-        margin-top: 3em;
-        font-size: 1.25em;
-      }
+    h2 {
+      background: var(--green-soft);
+      padding: 0.9em;
+      border-radius: 16px;
+      margin-top: 3em;
+      font-size: 1.25em;
+    }
 
-      p {
-        text-align: center;
-        color: var(--text-muted);
-        margin-top: 0;
-      }
+    p {
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 0;
+    }
 
-      .activity {
-        background: var(--bg-card);
-        margin: 1.2em 0;
-        padding: 1.2em;
-        border-left: 6px solid var(--green-accent);
-        border-radius: 12px;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
-        animation: fadeUp 0.6s ease both;
-      }
+    .activity {
+      background: var(--bg-card);
+      margin: 1.2em 0;
+      padding: 1.2em;
+      border-left: 6px solid var(--green-accent);
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      animation: fadeUp .6s ease both;
+    }
 
-      .time {
-        font-weight: 600;
-        color: var(--green-primary);
-      }
+    .time {
+      font-weight: 600;
+      color: var(--green-primary);
+    }
 
-      .desc {
-        margin-top: 0.5em;
-        line-height: 1.55;
-      }
+    .desc {
+      margin-top: .5em;
+      line-height: 1.55;
+    }
 
-      .emoji {
-        font-size: 1.25em;
-        margin-right: 6px;
-      }
+    .emoji {
+      font-size: 1.25em;
+      margin-right: 6px;
+    }
 
-      .link {
-        display: inline-block;
-        margin-top: 0.4em;
-        font-size: 0.9em;
-        color: var(--link-color);
-        text-decoration: none;
-      }
+    .link {
+      display: inline-block;
+      margin-top: .4em;
+      font-size: .9em;
+      color: var(--link-color);
+      text-decoration: none;
+    }
 
-      .link:hover {
-        text-decoration: underline;
-      }
+    .link:hover {
+      text-decoration: underline;
+    }
 
-      .note {
-        margin-top: 0.6em;
-        padding: 0.7em 0.9em;
-        background: var(--note-bg);
-        border-left: 4px solid var(--note-border);
-        border-radius: 8px;
-        font-size: 0.9em;
-        color: var(--text-muted);
-      }
+    .note {
+      margin-top: .6em;
+      padding: .7em .9em;
+      background: var(--note-bg);
+      border-left: 4px solid var(--note-border);
+      border-radius: 8px;
+      font-size: .9em;
+      color: var(--text-muted);
+    }
 
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(14px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-      @keyframes fadeDown {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
 
-      @media (max-width: 600px) {
-        h1 {
-          font-size: 1.6em;
-        }
-        h2 {
-          font-size: 1.1em;
-        }
-      }
-    </style>
-  </head>
+<body>
 
-  <body>
-    <h1>🌿 Itinerary Jogja</h1>
-    <p>14 – 16 Februari</p>
+<h1>🌿 Jogja Trip Itinerary</h1>
+<p>14 – 16 Februari</p>
 
-    <!-- DAY 1 -->
-    <h2>🚗 Hari 1 – Malang → Jogja</h2>
+<!-- DAY 1 -->
+<h2>🚗 Hari 1 – Malang → Jogja</h2>
 
-    <div class="activity">
-      <div class="time">02:00 – 08:00</div>
-      <div class="desc">
-        <span class="emoji">🛣️</span>Perjalanan Malang → Jogja
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">02:00 – 08:00</div>
+  <div class="desc">
+    <span class="emoji">🛣️</span>Perjalanan Malang → Jogja
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">08:00 – 09:00</div>
-      <div class="desc">
-        <span class="emoji">🍲</span>Sarapan di <strong>Soto Pak Parno</strong><br />
-        <a class="link" href="https://maps.app.goo.gl/wtZjbB4E2YpH7tCEA">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">09:00 – 11:30</div>
+  <div class="desc">
+    <span class="emoji">🛍️</span><strong>Pasar Beringharjo</strong>
+    <div class="note">🚶 parkir sekali di area Malioboro, sisanya jalan kaki</div>
+    <a class="link" href="https://maps.app.goo.gl/TsbqGee8UHbWrfr87">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">09:30 – 12:30</div>
-      <div class="desc">
-        <span class="emoji">🏛️</span>
-        <strong>Keraton Yogyakarta</strong>,
-        <strong>Museum Kereta</strong>,
-        <strong>Pasar Beringharjo</strong>,
-        <strong>Malioboro</strong>
+<div class="activity">
+  <div class="time">12:00 – 13:00</div>
+  <div class="desc">
+    <span class="emoji">🍢</span><strong>Sate Mbah Giran</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/uKJMmWLb9HCWywuJ8">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-        <div class="note">
-          🚶 <strong>Tips:</strong> parkir sekali di area Malioboro, sisanya bisa
-          jalan kaki.
-        </div>
+<div class="activity">
+  <div class="time">14:00</div>
+  <div class="desc">
+    <span class="emoji">🏨</span><strong>Keenan Living Luxe Seturan</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/pQcu6AAAukKCdrN99">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-        <a class="link" href="https://maps.app.goo.gl/FjwLcUZa1J2hYT4D9">📍 Keraton</a>
-        <a class="link" href="https://maps.app.goo.gl/VdGPfnJygZGZWZZa7">📍 Museum Kereta</a>
-        <a class="link" href="https://maps.app.goo.gl/TsbqGee8UHbWrfr87">📍 Pasar Beringharjo</a>
-        <a class="link" href="https://maps.app.goo.gl/yFRwVvK7g6VuoxmRA">📍 Malioboro</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">17:30 – 18:30</div>
+  <div class="desc">
+    <span class="emoji">☕</span><strong>Prawirotaman</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/JRt2zUXtDoaApdAv7">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">12:30 – 13:30</div>
-      <div class="desc">
-        <span class="emoji">🍢</span>Sate Mbah Giran<br />
-        <a class="link" href="https://maps.app.goo.gl/uKJMmWLb9HCWywuJ8">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">19:30 – 20:00</div>
+  <div class="desc">
+    <span class="emoji">🍨</span><strong>Gelato Malioboro</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/DaBuv3ozXEKKkcM27">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">14:30</div>
-      <div class="desc">
-        <span class="emoji">🏨</span>Keenan Living Luxe Seturan<br />
-        <a class="link" href="https://maps.app.goo.gl/pQcu6AAAukKCdrN99">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">20:15 – 21:30</div>
+  <div class="desc">
+    <span class="emoji">🌙</span><strong>Alun-Alun Kidul</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/MuF6jKj3Y9Y57Ukr8">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">17:30 – 18:30</div>
-      <div class="desc">
-        <span class="emoji">☕</span>Prawirotaman<br />
-        <a class="link" href="https://maps.app.goo.gl/JRt2zUXtDoaApdAv7">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<!-- DAY 2 -->
+<h2>🌄 Hari 2 – Selatan Jogja</h2>
 
-    <div class="activity">
-      <div class="time">19:00 – 20:30</div>
-      <div class="desc">
-        <span class="emoji">🐟</span>Mangut Lele Mbah Marto<br />
-        <a class="link" href="https://maps.app.goo.gl/wLtmApnDwahEokT38">📍 Lihat lokasi</a>
-        <div class="note">⏰ datang agak sore/malam, sering antre</div>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">08:00 – 09:00</div>
+  <div class="desc">
+    <span class="emoji">🥖</span><strong>Sofdoh</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/h2uo1ZaJggVribny9">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">20:45 – 21:30</div>
-      <div class="desc">
-        <span class="emoji">🌙</span>Alun-Alun Kidul<br />
-        <a class="link" href="https://maps.app.goo.gl/MuF6jKj3Y9Y57Ukr8">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">09:30 – 10:30</div>
+  <div class="desc">
+    <span class="emoji">🛋️</span><strong>Galeri Mamosa Home Decor Furniture</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/E5WDoJnTdnEgvGHZ7">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">21:30 – 22:00</div>
-      <div class="desc">
-        <span class="emoji">🍨</span>Gelato Malioboro<br />
-        <a class="link" href="https://maps.app.goo.gl/DaBuv3ozXEKKkcM27">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">11:30 – 13:00</div>
+  <div class="desc">
+    <span class="emoji">🐟</span><strong>Mangut Lele Mbah Marto</strong>
+    <div class="note">⏰ datang agak sore/malam, sering antre</div>
+    <a class="link" href="https://maps.app.goo.gl/wLtmApnDwahEokT38">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <!-- DAY 2 -->
-    <h2>🌄 Hari 2 – Selatan Jogja</h2>
+<div class="activity">
+  <div class="time">13:30 – 14:30</div>
+  <div class="desc">
+    <span class="emoji">🍖</span><strong>Sate Klathak Pak Pong</strong>
+    <div class="note">⚠️ WAJIB siang, malam rame banget</div>
+    <a class="link" href="https://maps.app.goo.gl/ojjEjekLN2c58bt2A">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">08:00 – 09:00</div>
-      <div class="desc">
-        <span class="emoji">🥖</span>Sourdough<br />
-        <a class="link" href="https://maps.app.goo.gl/RXfMP4sRJJuBiyN4A">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">15:30 – 17:30</div>
+  <div class="desc">
+    <span class="emoji">🌿</span><strong>Wanawatu</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/R7aBiZvRA5ppiPpC6">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">09:30 – 11:00</div>
-      <div class="desc">
-        <span class="emoji">🏺</span>Desa Wisata Kasongan<br />
-        <a class="link" href="https://maps.app.goo.gl/M9KDvNGYs9pHgQpj9">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<!-- DAY 3 -->
+<h2>🎁 Hari 3 – Santai & Pulang</h2>
 
-    <div class="activity">
-      <div class="time">12:30 – 13:30</div>
-      <div class="desc">
-        <span class="emoji">🍖</span>Sate Klathak Pak Pong<br />
-        <a class="link" href="https://maps.app.goo.gl/ojjEjekLN2c58bt2A">📍 Lihat lokasi</a>
-        <div class="note">⚠️ WAJIB siang, malam rame banget</div>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">10:00 – 11:00</div>
+  <div class="desc">
+    <span class="emoji">🍜</span><strong>Golden Geisha Ramen</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/srT6eT5E8PugYHfm7">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">14:30 – 16:30</div>
-      <div class="desc">
-        <span class="emoji">🌿</span>Wanawatu<br />
-        <a class="link" href="https://maps.app.goo.gl/R7aBiZvRA5ppiPpC6">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">11:30 – 12:30</div>
+  <div class="desc">
+    <span class="emoji">🥩</span><strong>Warung Pethel Bakar dan Steak Pak Kaji</strong><br/>
+    <a class="link" href="https://maps.app.goo.gl/z16U17FdrhtYoVFz7">📍 Lihat lokasi</a>
+  </div>
+</div>
 
-    <div class="activity">
-      <div class="time">18:30 – 20:00</div>
-      <div class="desc">
-        <span class="emoji">🍽️</span>Mbak Pesta<br />
-        <a class="link" href="https://maps.app.goo.gl/q7tWcqtfBXVVa4Eb7">📍 Lihat lokasi</a>
-      </div>
-    </div>
+<div class="activity">
+  <div class="time">13:00</div>
+  <div class="desc">
+    <span class="emoji">🚗</span>Perjalanan Jogja → Malang
+  </div>
+</div>
 
-    <!-- DAY 3 -->
-    <h2>🎁 Hari 3 – Oleh-oleh & Pulang</h2>
-
-    <div class="activity">
-      <div class="time">08:00 – 09:00</div>
-      <div class="desc">
-        <span class="emoji">🥮</span>Bakpia Juwara Satoe<br />
-        <a class="link" href="https://maps.app.goo.gl/VeWTVsJciEkn4tMM7">📍 Lihat lokasi</a>
-      </div>
-    </div>
-
-    <div class="activity">
-      <div class="time">11:00</div>
-      <div class="desc">
-        <span class="emoji">🚗</span>Perjalanan Jogja → Malang
-      </div>
-    </div>
-  </body>
+</body>
 </html>
