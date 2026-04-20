@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jadwal misa gereja Katolik Kota & Kabupaten Malang — ringkasan 2026 berbasis sumber resmi/sekunder terverifikasi." />
+  <title>Jadwal Misa Katolik — Malang 2026</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --surface: #ffffff;
+      --text: #1a1f2e;
+      --muted: #5c6478;
+      --accent: #2d4a8c;
+      --accent-soft: #e8eef9;
+      --highlight: #fff7e6;
+      --highlight-border: #e8b84a;
+      --success: #1f7a4d;
+      --success-soft: #e6f5ed;
+      --shadow: 0 4px 14px rgba(26, 31, 46, 0.08);
+      --shadow-lg: 0 12px 32px rgba(26, 31, 46, 0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.35rem;
+      color: var(--text);
+    }
+
+    header p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--surface);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.25rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: linear-gradient(180deg, var(--bg) 70%, transparent);
+      padding-bottom: 0.5rem;
+      margin: 0 -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .search {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid #d8dde8;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      margin-bottom: 0.75rem;
+    }
+
+    .search:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: var(--shadow), 0 0 0 3px var(--accent-soft);
+    }
+
+    .filter-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .chip {
+      border: 1px solid #d8dde8;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.85rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chip[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .badge-most {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: var(--highlight);
+      color: #7a5a12;
+      font-weight: 600;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid var(--highlight-border);
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.15rem;
+      box-shadow: var(--shadow);
+      border: 1px solid #eef0f5;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card.most-masses {
+      border-color: var(--highlight-border);
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(232, 184, 74, 0.25);
+      background: linear-gradient(135deg, #fffefb 0%, var(--surface) 55%);
+    }
+
+    .card-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.01em;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      justify-content: flex-end;
+    }
+
+    .badge-hc {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--success-soft);
+      color: var(--success);
+      padding: 0.25rem 0.45rem;
+      border-radius: 6px;
+      border: 1px solid rgba(31, 122, 77, 0.2);
+      white-space: nowrap;
+    }
+
+    .badge-count {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--accent-soft);
+      padding: 0.2rem 0.45rem;
+      border-radius: 6px;
+    }
+
+    .location {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 0.85rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
+
+    .location span.icon {
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .schedule {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .schedule-block {
+      background: #f8f9fc;
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.75rem;
+      border: 1px solid #eceef4;
+    }
+
+    .schedule-block h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .times {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .time-pill {
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: var(--surface);
+      padding: 0.25rem 0.55rem;
+      border-radius: 8px;
+      border: 1px solid #e0e4ee;
+      color: var(--text);
+    }
+
+    .time-pill.dim {
+      opacity: 0.35;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .wilayah {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 0.45rem;
+    }
+
+    .source-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin: 0 0 0.65rem;
+      line-height: 1.45;
+      padding: 0.5rem 0.6rem;
+      background: #fafbff;
+      border-radius: 8px;
+      border: 1px solid #eceef4;
+    }
+
+    .schedule-gap {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 0.65rem 0.75rem;
+      background: #fff9f0;
+      border: 1px solid #f0e0c8;
+      border-radius: var(--radius-sm);
+      margin-top: 0.25rem;
+    }
+
+    .methodology {
+      margin-top: 2.25rem;
+      padding: 1rem 1.1rem;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid #eceef4;
+      box-shadow: var(--shadow);
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .methodology h2 {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin: 0 0 0.5rem;
+    }
+
+    .methodology ul {
+      margin: 0.35rem 0 0;
+      padding-left: 1.15rem;
+    }
+
+    .methodology a {
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (min-width: 480px) {
+      .wrap {
+        padding: 1.75rem 1.25rem 3.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Jadwal Misa Katolik — Malang</h1>
+      <p>Kota &amp; Kabupaten · 2026 · riset sumber terbuka April 2026</p>
+    </header>
+
+    <p class="disclaimer">
+      Halaman ini menyatukan jadwal <strong>Misa Sabtu &amp; Misa Minggu</strong> dari sumber resmi/sekunder yang dapat diperiksa ulang. Beberapa paroki <strong>tidak mempublikasikan jam di lembar agregator</strong> — kartu tersebut menjelaskan celahnya. Selalu utamakan <strong>pengumuman paroki terbaru</strong> (papan gereja, website paroki, atau Instagram resmi).
+    </p>
+
+    <div class="toolbar">
+      <label class="visually-hidden" for="q">Cari nama gereja</label>
+      <input
+        id="q"
+        class="search"
+        type="search"
+        inputmode="search"
+        autocomplete="off"
+        placeholder="Cari nama, alamat, atau kata Kabupaten / Kota…"
+        aria-label="Filter nama gereja"
+      />
+      <div class="filter-label">Waktu misa</div>
+      <div class="chips" id="chips" role="group" aria-label="Filter waktu misa"></div>
+      <div class="meta-row">
+        <span id="countLabel"></span>
+        <span class="badge-most" id="mostHint" hidden>⭐ Jadwal terbanyak</span>
+      </div>
+    </div>
+
+    <div class="list" id="list" aria-live="polite"></div>
+
+    <section class="methodology" id="metodologi">
+      <h2>Metodologi &amp; sumber (April 2026)</h2>
+      <p style="margin: 0 0 0.5rem">
+        Daftar paroki mengikuti <strong>Regio Barat — Keuskupan Malang</strong> untuk wilayah <strong>Kota Malang</strong> dan <strong>Kabupaten Malang</strong> (tanpa Kota Batu / Pasuruan / Madura). Situs agregator lama tanpa tanggal pembaruan <strong>tidak dipakai</strong> sebagai satusatunya bukti.
+      </p>
+      <ul>
+        <li>
+          <strong>Prioritas 1 — resmi paroki/keuskupan:</strong>
+          <a href="https://keuskupanmalang.com/paroki/regio-barat/">keuskupanmalang.com/paroki/regio-barat/</a> (struktur wilayah, diperbarui Maret 2026 menurut metadata situs);
+          <a href="https://parokilangsep.org/">parokilangsep.org</a> (teks jadwal misa di beranda).
+        </li>
+        <li>
+          <strong>Prioritas 2 — lembar jadwal Keuskupan yang dihosting pihak ketiga:</strong>
+          <a href="https://www.imankatolik.or.id/malang.html">imankatolik.or.id/malang.html</a> (tabel &ldquo;Dekenat Kota / Utara / Selatan Malang&rdquo;; beberapa baris untuk paroki tertentu kosong).
+        </li>
+        <li>
+          <strong>Cross-check (minimal dua jalur) untuk beberapa paroki:</strong> ringkasan liturgi Natal 2024 di
+          <a href="https://kumparan.com/seputar-malang/jadwal-misa-gereja-katolik-malang-di-berbagai-paroki-untuk-misa-natal-2024-249WHVcEYnZ">kumparan.com</a> (mengutip Instagram resmi paroki);
+          jadwal Pekan Suci / Minggu Paskah 2025 di
+          <a href="https://suryamalang.tribunnews.com/2025/04/15/jadwal-misa-paskah-katolik-2025-gereja-di-malang-dan-kota-batu-mulai-kamis-putih">suryamalang.tribunnews.com</a> dan
+          <a href="https://jatimtimes.com/baca/335630/20250420/075400/jadwal-misa-minggu-paskah-2025-di-gereja-katolik-malang-catat-waktunya">jatimtimes.com</a> — dipakai hanya sebagai <strong>petunjuk slot jam</strong> yang sering diulang pada hari Minggu biasa, dengan catatan di kartu.
+        </li>
+        <li>
+          <strong>High Confidence</strong> diberikan bila ada kombinasi sumber resmi paroki/keuskupan atau dua sumber independen yang selaras untuk jam yang sama.
+        </li>
+        <li>
+          <strong>Instagram resmi</strong> sering memuat perubahan dadakan, mis.
+          <a href="https://www.instagram.com/parokiijen/">@parokiijen</a> (Katedral Ijen) atau
+          <a href="https://www.instagram.com/infokeuskupanmalang/">@infokeuskupanmalang</a> — gunakan sebagai pembanding jika web/aggregator belum diperbarui.
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      /**
+       * Data riset April 2026 — slot: sabtu | minggu_pagi | minggu_sore
+       * scheduleGap: true → tidak ada jam terpublikasi di sumber primer; kartu tetap muncul di filter "Semua".
+       */
+      var churches = [
+        {
+          id: "katedral-ijen",
+          wilayah: "Kota Malang",
+          name: "Paroki Santa Perawan Maria dari Gunung Karmel (Katedral Ijen)",
+          location: "Jl. Buring No. 60, Oro-oro Dowo, Klojen, Malang",
+          highConfidence: true,
+          sourceNote:
+            "Tabel Dekenat Kota di imankatolik.or.id/malang.html (Sabtu 16.30; Minggu 05.30, 07.30, 16.30, 18.30) + cross-check JatimTIMES Minggu Paskah 2025 & Kumparan Natal 2024 (slot Minggu selaras; Misa 10.00 anak/lansia pada hari raya — ikuti pengumuman).",
+          masses: [
+            { when: "Sabtu", time: "16.30", slot: "sabtu" },
+            { when: "Sabtu", time: "18.30", slot: "sabtu" },
+            { when: "Minggu", time: "05.30", slot: "minggu_pagi" },
+            { when: "Minggu", time: "07.30", slot: "minggu_pagi" },
+            { when: "Minggu", time: "16.30", slot: "minggu_sore" },
+            { when: "Minggu", time: "18.30", slot: "minggu_sore" }
+          ]
+        },
+        {
+          id: "langsep",
+          wilayah: "Kota Malang",
+          name: "Paroki Santo Vincentius a Paulo (Langsep)",
+          location: "Jl. Ananas No. 41, Pisang Candi, Sukun, Malang",
+          highConfidence: true,
+          sourceNote:
+            "Website resmi parokilangsep.org — teks beranda (Apr 2026): Misa harian 05.30; Sabtu 17.00; Minggu 06.00, 08.00, 17.00. (Lembar imankatolik untuk entri \"Langsep\" menampilkan pola lama 06.30/07.30 — tidak dipakai.)",
+          masses: [
+            { when: "Sabtu", time: "17.00", slot: "sabtu" },
+            { when: "Minggu", time: "06.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "08.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "17.00", slot: "minggu_sore" }
+          ]
+        },
+        {
+          id: "tidar",
+          wilayah: "Kabupaten Malang",
+          name: "Paroki Santo Andreas (Tidar)",
+          location: "Jl. Puncak Esberg No. 22, Karangwidoro, Dau, Kab. Malang",
+          highConfidence: false,
+          sourceNote:
+            "Baris Tidar di imankatolik.or.id kosong untuk Sabtu/Minggu. Jam Minggu di bawah mengikuti ringkasan JatimTIMES (Minggu Paskah 2025, 20 Apr 2025) sebagai petunjuk slot yang umum dipakai paroki; Sabtu tidak tercantum di sumber itu — konfirmasi ke paroki.",
+          masses: [
+            { when: "Minggu", time: "07.30", slot: "minggu_pagi" },
+            { when: "Minggu", time: "10.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "17.00", slot: "minggu_sore" }
+          ]
+        },
+        {
+          id: "blimbing",
+          wilayah: "Kota Malang",
+          name: "Paroki Santo Albertus de Trapani (Blimbing)",
+          location: "Jl. Jend. A. Yani No. 22, Blimbing, Malang",
+          highConfidence: true,
+          sourceNote: "imankatolik.or.id/malang.html — Dekenat Kota (Sabtu 16.30 & 18.30; Minggu 06.00, 08.00, 18.00). Selaras ringkasan Kumparan Natal 2024.",
+          masses: [
+            { when: "Sabtu", time: "16.30", slot: "sabtu" },
+            { when: "Sabtu", time: "18.30", slot: "sabtu" },
+            { when: "Minggu", time: "06.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "08.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "18.00", slot: "minggu_sore" }
+          ]
+        },
+        {
+          id: "janti",
+          wilayah: "Kota Malang",
+          name: "Paroki Santo Yohanes Pembaptis (Janti)",
+          location: "Jl. Keben II Surya Timur No. 9, Bandungrejosari, Sukun, Malang",
+          highConfidence: false,
+          sourceNote:
+            "imankatolik.or.id — Minggu 08.00 & 16.30; Sabtu tidak diisi di tabel. JatimTIMES Paskah 2025 menyebut slot tambahan liturgi khusus — untuk Sabtu biasa tanyakan sekretariat.",
+          masses: [
+            { when: "Minggu", time: "08.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "16.30", slot: "minggu_sore" }
+          ]
+        },
+        {
+          id: "kayutangan",
+          wilayah: "Kota Malang",
+          name: "Paroki Hati Kudus Yesus (Kayutangan)",
+          location: "Jl. Mgr. Sugiyopranoto No. 2, Kiduldalem, Klojen, Malang",
+          highConfidence: false,
+          sourceNote:
+            "Baris Kayutangan kosong di imankatolik; jam di bawah diselaraskan dari infokatolik.id (agregat lama) + cross-check JatimTIMES & Kumparan (slot serupa) — tetap verifikasi ke paroki.",
+          masses: [
+            { when: "Sabtu", time: "16.30", slot: "sabtu" },
+            { when: "Sabtu", time: "18.30", slot: "sabtu" },
+            { when: "Minggu", time: "06.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "08.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "16.30", slot: "minggu_sore" },
+            { when: "Minggu", time: "18.30", slot: "minggu_sore" }
+          ]
+        },
+        {
+          id: "kesatrian",
+          wilayah: "Kota Malang",
+          name: "Paroki Maria Ratu Rosario dari Fatima (Kesatrian)",
+          location: "Jl. Kawi Atas, Kec. Klojen, Malang",
+          highConfidence: true,
+          sourceNote:
+            "imankatolik.or.id — Sabtu 17.00; Minggu 06.30, 07.30, 17.00; stasi Minggu I & III 08.00 (tidak dimasukkan sebagai misa minggu tetap). Kumparan Natal 2024: pola Minggu 06.00 / 08.00 / 16.30 (hari raya).",
+          masses: [
+            { when: "Sabtu", time: "17.00", slot: "sabtu" },
+            { when: "Minggu", time: "06.30", slot: "minggu_pagi" },
+            { when: "Minggu", time: "07.30", slot: "minggu_pagi" },
+            { when: "Minggu", time: "17.00", slot: "minggu_sore" }
+          ]
+        },
+        {
+          id: "celaket",
+          wilayah: "Kota Malang",
+          name: "Gereja Maria Diangkat ke Surga — Celaket (wilayah Paroki Lely)",
+          location: "Jl. Bunga Lely No. 17–19, Lowokwaru, Malang",
+          highConfidence: false,
+          sourceNote: "imankatolik.or.id — Sabtu 17.00; Minggu 07.30 (misa utama gedung Celaket). JatimTIMES Paskah 2025 menyebut 06.00 & 08.00 pada hari raya — beda liturgi.",
+          masses: [
+            { when: "Sabtu", time: "17.00", slot: "sabtu" },
+            { when: "Minggu", time: "07.30", slot: "minggu_pagi" }
+          ]
+        },
+        {
+          id: "cor-jesu",
+          wilayah: "Kota Malang",
+          name: "Gereja Cor Jesu (wilayah Paroki Maria Diangkat ke Surga / Lely)",
+          location: "Jl. Jaksa Agung Suprapto No. 55, Samaan, Klojen, Malang",
+          highConfidence: true,
+          sourceNote: "imankatolik.or.id — Sabtu 17.00; Minggu 06.00, 08.00, 17.00. JatimTIMES Paskah 2025: 17.30 pada Minggu Paskah (bukan minggu biasa).",
+          masses: [
+            { when: "Sabtu", time: "17.00", slot: "sabtu" },
+            { when: "Minggu", time: "06.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "08.00", slot: "minggu_pagi" },
+            { when: "Minggu", time: "17.00", slot: "minggu_sore" }
+          ]
+        },
+        {
+          id: "lawang",
+          wilayah: "Kabupaten Malang",
+          name: "Paroki Santa Maria Tak Bernoda (Lawang)",
+          location: "Lawang, Kab. Malang (kompleks gereja utama paroki)",
+          highConfidence: false,
+          sourceNote:
+            "imankatolik.or.id — Dekenat Utara: Sabtu 05.30; Minggu 07.00; harian 05.30 Sen–Sel–Kam. Ada kapel filial (Bruderan, Panti Pangesti) dengan jadwal terpisah — lihat paroki.",
+          masses: [
+            { when: "Sabtu", time: "05.30", slot: "sabtu" },
+            { when: "Minggu", time: "07.00", slot: "minggu_pagi" }
+          ]
+        },
+        {
+          id: "lodalem",
+          wilayah: "Kabupaten Malang",
+          name: "Paroki Maria Annunciata (Lodalem)",
+          location: "Lodalem, Kab. Malang",
+          highConfidence: false,
+          sourceNote: "imankatolik.or.id — Dekenat Selatan: harian 05.30; Minggu 07.15; Sabtu tidak diisi.",
+          masses: [{ when: "Minggu", time: "07.15", slot: "minggu_pagi" }]
+        },
+        {
+          id: "tumpang",
+          wilayah: "Kabupaten Malang",
+          name: "Paroki Santa Trinitas (Tumpang)",
+          location: "Tumpang, Kab. Malang",
+          highConfidence: false,
+          scheduleGap: true,
+          sourceNote:
+            "Tercantum di keuskupanmalang.com (Regio Barat). Baris jadwal Sabtu/Minggu di imankatolik.or.id kosong per April 2026 — tidak membuat jam fiktif.",
+          assumption:
+            "Pola umum paroki Jawa Timur sering: Sabtu 17.00 atau 18.00, Minggu 06.00 & 08.00 — ini hanya asumsi pastoral; wajib hubungi sekretariat paroki.",
+          masses: []
+        },
+        {
+          id: "purworejo",
+          wilayah: "Kabupaten Malang",
+          name: "Paroki Maria Ratu Damai (Purworejo)",
+          location: "Purworejo, Kab. Malang",
+          highConfidence: false,
+          scheduleGap: true,
+          sourceNote: "Keuskupan Malang — Dekenat Selatan. Tabel imankatolik: sel Sabtu/Minggu kosong.",
+          assumption: "Konfirmasi langsung ke paroki atau pengumuman lingkungan setempat.",
+          masses: []
+        },
+        {
+          id: "kepanjen",
+          wilayah: "Kabupaten Malang",
+          name: "Paroki Santa Maria Tak Bernoda (Kepanjen)",
+          location: "Kepanjen, Kab. Malang",
+          highConfidence: false,
+          scheduleGap: true,
+          sourceNote: "Keuskupan Malang — Dekenat Selatan. Tabel imankatolik: sel Sabtu/Minggu kosong.",
+          assumption: "Konfirmasi langsung ke paroki.",
+          masses: []
+        },
+        {
+          id: "singosari",
+          wilayah: "Kabupaten Malang",
+          name: "Paroki Santo Yohanes Maria Vianney (Singosari)",
+          location: "Singosari, Kab. Malang",
+          highConfidence: false,
+          scheduleGap: true,
+          sourceNote:
+            "Tercantum di struktur Regio Barat Keuskupan Malang; tidak ditemukan baris terpisah di imankatolik.or.id/malang.html (Apr 2026).",
+          assumption: "Cari akun media sosial resmi paroki atau hubungi Keuskupan Malang.",
+          masses: []
+        }
+      ];
+
+      var SLOT_ALL = "all";
+      var filterOptions = [
+        { id: SLOT_ALL, label: "Semua" },
+        { id: "sabtu", label: "Sabtu" },
+        { id: "minggu_pagi", label: "Minggu pagi" },
+        { id: "minggu_sore", label: "Minggu sore" }
+      ];
+
+      var state = {
+        query: "",
+        slot: SLOT_ALL
+      };
+
+      function normalize(s) {
+        return (s || "").toLowerCase().trim();
+      }
+
+      function massCount(c) {
+        return c.masses.length;
+      }
+
+      function matchesQuery(c, q) {
+        if (!q) return true;
+        var n = normalize(q);
+        return (
+          normalize(c.name).indexOf(n) !== -1 ||
+          normalize(c.location).indexOf(n) !== -1 ||
+          (c.wilayah && normalize(c.wilayah).indexOf(n) !== -1)
+        );
+      }
+
+      function matchesSlot(c, slot) {
+        if (slot === SLOT_ALL) return true;
+        return c.masses.some(function (m) {
+          return m.slot === slot;
+        });
+      }
+
+      function filterChurches() {
+        var q = normalize(state.query);
+        return churches.filter(function (c) {
+          return matchesQuery(c, q) && matchesSlot(c, state.slot);
+        });
+      }
+
+      function splitMasses(c) {
+        var sabtu = [];
+        var mingguPagi = [];
+        var mingguSore = [];
+        c.masses.forEach(function (m) {
+          if (m.when === "Sabtu") sabtu.push(m);
+          else if (m.slot === "minggu_pagi") mingguPagi.push(m);
+          else mingguSore.push(m);
+        });
+        return { sabtu: sabtu, mingguPagi: mingguPagi, mingguSore: mingguSore };
+      }
+
+      function pillClass(m, activeSlot) {
+        if (activeSlot === SLOT_ALL) return "";
+        return m.slot === activeSlot ? "" : " dim";
+      }
+
+      function renderTimes(masses, activeSlot) {
+        if (!masses.length) {
+          return '<span class="time-pill" style="opacity:.5">—</span>';
+        }
+        return masses
+          .map(function (m) {
+            return (
+              '<span class="time-pill' +
+              pillClass(m, activeSlot) +
+              '">' +
+              m.time +
+              " WIB</span>"
+            );
+          })
+          .join("");
+      }
+
+      function cardHtml(c, visibleMax) {
+        var parts = splitMasses(c);
+        var nMass = massCount(c);
+        var isMost = visibleMax > 0 && nMass > 0 && nMass === visibleMax;
+        var hc = c.highConfidence
+          ? '<span class="badge-hc" title="Ada sumber resmi paroki/keuskupan atau dua jalur independen yang selaras untuk jam ini">High Confidence</span>'
+          : "";
+        var countBadge =
+          '<span class="badge-count">' + (nMass ? nMass + " jadwal" : "Belum terjadwal") + "</span>";
+        var wilayahEl = c.wilayah
+          ? '<p class="wilayah" title="Wilayah administratif">' + escapeHtml(c.wilayah) + "</p>"
+          : "";
+        var sourceEl = c.sourceNote
+          ? '<p class="source-note"><strong>Sumber:</strong> ' + escapeHtml(c.sourceNote) + "</p>"
+          : "";
+        var gapEl =
+          c.scheduleGap && c.assumption
+            ? '<div class="schedule-gap"><strong>Belum ada jam terpublikasi.</strong> ' +
+              escapeHtml(c.assumption) +
+              "</div>"
+            : "";
+
+        var scheduleInner = "";
+        if (c.scheduleGap && !nMass) {
+          scheduleInner = gapEl;
+        } else {
+          scheduleInner =
+            gapEl +
+            '<div class="schedule">' +
+            '<div class="schedule-block">' +
+            "<h3>Misa Sabtu</h3>" +
+            '<div class="times">' +
+            renderTimes(parts.sabtu, state.slot) +
+            "</div>" +
+            "</div>" +
+            '<div class="schedule-block">' +
+            "<h3>Misa Minggu — pagi</h3>" +
+            '<div class="times">' +
+            renderTimes(parts.mingguPagi, state.slot) +
+            "</div>" +
+            "</div>" +
+            '<div class="schedule-block">' +
+            "<h3>Misa Minggu — sore</h3>" +
+            '<div class="times">' +
+            renderTimes(parts.mingguSore, state.slot) +
+            "</div>" +
+            "</div>" +
+            "</div>";
+        }
+
+        return (
+          '<article class="card' +
+          (isMost ? " most-masses" : "") +
+          '" data-id="' +
+          c.id +
+          '">' +
+          '<div class="card-head">' +
+          "<h2>" +
+          escapeHtml(c.name) +
+          "</h2>" +
+          '<div class="badges">' +
+          hc +
+          countBadge +
+          "</div>" +
+          "</div>" +
+          wilayahEl +
+          '<p class="location"><span class="icon" aria-hidden="true">📍</span><span>' +
+          escapeHtml(c.location) +
+          "</span></p>" +
+          sourceEl +
+          scheduleInner +
+          "</article>"
+        );
+      }
+
+      function escapeHtml(str) {
+        return str
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      var qEl = document.getElementById("q");
+      var chipsEl = document.getElementById("chips");
+      var listEl = document.getElementById("list");
+      var countLabel = document.getElementById("countLabel");
+      var mostHint = document.getElementById("mostHint");
+
+      filterOptions.forEach(function (opt, i) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "chip";
+        btn.textContent = opt.label;
+        btn.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+        btn.dataset.slot = opt.id;
+        chipsEl.appendChild(btn);
+      });
+
+      function syncChips() {
+        var buttons = chipsEl.querySelectorAll(".chip");
+        buttons.forEach(function (b) {
+          b.setAttribute("aria-pressed", b.dataset.slot === state.slot ? "true" : "false");
+        });
+      }
+
+      function render() {
+        var items = filterChurches();
+        syncChips();
+
+        var visibleMax = items.reduce(function (m, c) {
+          return Math.max(m, massCount(c));
+        }, 0);
+        var tieCount = items.filter(function (c) {
+          return massCount(c) === visibleMax;
+        }).length;
+        var hasTieForMost = tieCount > 1;
+        mostHint.hidden = items.length === 0;
+        if (!mostHint.hidden) {
+          mostHint.textContent = hasTieForMost
+            ? "⭐ Beberapa gereja punya jadwal terbanyak di hasil ini"
+            : "⭐ Kartu bertanda: jumlah jadwal terbanyak di hasil filter/pencarian";
+        }
+
+        countLabel.textContent =
+          items.length === churches.length
+            ? "Menampilkan " + items.length + " gereja"
+            : "Menampilkan " + items.length + " dari " + churches.length + " gereja";
+
+        if (!items.length) {
+          listEl.innerHTML = '<p class="empty">Tidak ada gereja yang cocok. Coba ubah kata kunci atau filter waktu.</p>';
+          return;
+        }
+
+        listEl.innerHTML = items.map(function (c) {
+          return cardHtml(c, visibleMax);
+        }).join("");
+      }
+
+      qEl.addEventListener("input", function () {
+        state.query = qEl.value;
+        render();
+      });
+
+      chipsEl.addEventListener("click", function (e) {
+        var t = e.target;
+        if (t.classList.contains("chip")) {
+          state.slot = t.dataset.slot || SLOT_ALL;
+          render();
+        }
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
