@@ -193,6 +193,17 @@
     color: var(--gold);
   }
 
+  .filter-group-label {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin: 0.4rem 0 0.15rem;
+  }
+  .controls .filter-group-label:first-of-type {
+    margin-top: 0;
+  }
+
   /* ── SECTION LABEL ── */
   .section-label {
     display: flex;
@@ -436,6 +447,15 @@
 
   .note-box strong { color: var(--gold-light); }
 
+  .note-box--warn {
+    background: rgba(212,168,67,0.06);
+    border-color: rgba(212,168,67,0.2);
+  }
+  .note-box--danger {
+    background: rgba(192,84,74,0.06);
+    border-color: rgba(192,84,74,0.2);
+  }
+
   /* ── NO RESULTS ── */
   #noResults {
     text-align: center;
@@ -522,7 +542,7 @@
   <h1>Jadwal Misa <span>Malang Raya</span></h1>
   <p class="subtitle">Kota Malang &amp; Kabupaten Malang — 2025–2026</p>
   <div class="header-meta">
-    <span class="meta-badge"><span class="dot"></span> 14 Paroki</span>
+    <span class="meta-badge"><span class="dot"></span> <span id="parish-count-num">14</span> Paroki</span>
     <span class="meta-badge"><span class="dot"></span> Data terverifikasi</span>
     <span class="meta-badge"><span class="dot"></span> Keuskupan Malang</span>
   </div>
@@ -532,711 +552,347 @@
   <div class="controls">
     <div class="search-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="searchInput" placeholder="Cari nama gereja, lokasi…" oninput="filterCards()">
+      <input type="search" id="searchInput" placeholder="Cari nama gereja, lokasi…" autocomplete="off" enterkeyhint="search">
     </div>
-    <div class="filter-tabs">
-      <button class="filter-btn active" onclick="setFilter('all',this)">Semua</button>
-      <button class="filter-btn" onclick="setFilter('kota',this)">Kota Malang</button>
-      <button class="filter-btn" onclick="setFilter('kabupaten',this)">Kab. Malang</button>
-      <button class="filter-btn" onclick="setFilter('tinggi',this)">✅ Data Valid</button>
-      <button class="filter-btn" onclick="setFilter('perludicek',this)">⚠️ Perlu Dicek</button>
+    <div class="filter-group-label">Wilayah &amp; tingkat data</div>
+    <div class="filter-tabs" id="filter-region" role="group" aria-label="Wilayah dan tingkat kepercayaan data">
+      <button type="button" class="filter-btn active" data-region="all">Semua</button>
+      <button type="button" class="filter-btn" data-region="kota">Kota Malang</button>
+      <button type="button" class="filter-btn" data-region="kabupaten">Kab. Malang</button>
+      <button type="button" class="filter-btn" data-region="tinggi">✅ Data Valid</button>
+      <button type="button" class="filter-btn" data-region="perludicek">⚠️ Perlu Dicek</button>
+    </div>
+    <div class="filter-group-label">Waktu liturgi</div>
+    <div class="filter-tabs" id="filter-liturgy" role="group" aria-label="Filter waktu misa (vigil dan Minggu)">
+      <button type="button" class="filter-btn active" data-liturgy="all" title="Tampilkan semua jadwal">Semua jam</button>
+      <button type="button" class="filter-btn" data-liturgy="sabtu_sore" title="Misa Sabtu mulai 16.00 WIB atau sesudahnya">Sabtu sore</button>
+      <button type="button" class="filter-btn" data-liturgy="minggu_pagi" title="Misa Minggu sebelum 11.00 WIB">Minggu pagi</button>
+      <button type="button" class="filter-btn" data-liturgy="minggu_sore" title="Misa Minggu mulai 15.00 WIB atau sesudahnya">Minggu sore</button>
     </div>
   </div>
 
   <div id="resultCount"></div>
 
-  <!-- ─────────────── KOTA MALANG — DEKENAT I ─────────────── -->
-  <div class="section-label" data-section="kota">🏛 Kota Malang — Dekenat I</div>
+  <div id="parishes-root" aria-live="polite"></div>
 
-  <!-- Paroki Ijen -->
-  <div class="church-card" data-wilayah="kota" data-trust="tinggi" data-search="ijen katedral spmgk santa perawan maria gunung karmel buring klojen">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Katedral Ijen</div>
-          <div class="card-paroki">Paroki SPMGK (Ijen)</div>
-          <div class="card-location">📍 Jl. Buring No. 60, Klojen</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-high">✅ Tinggi</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 16.30, 18.30</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 05.30, 07.30, 16.30, 18.30</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 16.30 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 18.30 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 05.30 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 07.30 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 16.30 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 18.30 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Kapel:</strong> Kapel Sengkaling (Sabtu 17.00) · Kapel Landungsari (Sabtu 18.00)<br>
-          <strong>Misa Harian:</strong> 05.30 WIB setiap hari<br>
-          <strong>Kontak:</strong> (0341) 362524
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🌐 parokiijenmalang.my.id</span>
-          <span class="source-tag">📷 @parokiijen</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Langsep -->
-  <div class="church-card" data-wilayah="kota" data-trust="tinggi" data-search="langsep vincentius paulo ananas sukun pisang candi">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja St. Vincentius A Paulo</div>
-          <div class="card-paroki">Paroki Langsep</div>
-          <div class="card-location">📍 Jl. Ananas No. 41, Sukun</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-high">✅ Tinggi</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 06.00, 08.00, 17.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 06.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 08.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Misa Harian:</strong> 05.30 WIB setiap hari<br>
-          <strong>Misa Penyembuhan:</strong> Diadakan setiap bulan (konfirmasi ke paroki)<br>
-          <strong>Kontak:</strong> (0341) 561336
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🌐 parokilangsep.org</span>
-          <span class="source-tag">📷 @parokilangsep_malang</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Tidar -->
-  <div class="church-card" data-wilayah="kota" data-trust="tinggi" data-search="tidar andreas puncak esberg dau karangwidoro">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja St. Andreas</div>
-          <div class="card-paroki">Paroki Tidar</div>
-          <div class="card-location">📍 Jl. Puncak Esberg No. 22, Dau</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-high">✅ Tinggi</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 06.30, 09.00, 17.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 06.30 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 09.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Misa Harian:</strong> 05.30 WIB · <strong>Jalan Salib Jumat:</strong> 17.00 (dilanjut misa)<br>
-          <strong>Ordo:</strong> Karmel (O.Carm)<br>
-          <strong>Website:</strong> parokitidarmalang.org
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🌐 parokitidarmalang.org</span>
-          <span class="source-tag">🗓 Update: Maret 2026</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─────────────── KOTA MALANG — DEKENAT II ─────────────── -->
-  <div class="section-label" data-section="kota">🏙 Kota Malang — Dekenat II</div>
-
-  <!-- Paroki Blimbing -->
-  <div class="church-card" data-wilayah="kota" data-trust="tinggi" data-search="blimbing albertus trapani yani ahmad">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja St. Albertus de Trapani</div>
-          <div class="card-paroki">Paroki Blimbing</div>
-          <div class="card-location">📍 Jl. A. Yani No. 22, Blimbing</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-high">✅ Tinggi</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00, 19.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 06.00, 08.00, 17.00, 19.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 19.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 06.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 08.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 19.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Misa Harian:</strong> 05.30 & 19.00 WIB · <strong>Jumat Pertama:</strong> 18.00 WIB<br>
-          <strong>Kapel Kolese St. Yusuf:</strong> Sabtu Minggu pagi 07.00 (Mojolangu)<br>
-          <strong>Kontak:</strong> (0341) 491842
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🌐 parokiblimbing.org</span>
-          <span class="source-tag">📷 @parokiblimbing</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Kayutangan -->
-  <div class="church-card" data-wilayah="kota" data-trust="tinggi" data-search="kayutangan hati kudus yesus sugiyopranoto klojen kiduldalem">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Hati Kudus Yesus</div>
-          <div class="card-paroki">Paroki Kayutangan</div>
-          <div class="card-location">📍 Jl. MGR Sugiyopranoto No. 2, Klojen</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-high">✅ Tinggi</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 07.00, 09.00, 17.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 07.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 09.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Misa Harian:</strong> Senin–Kamis 12.00, Jumat 11.30 · <strong>Ordo:</strong> Karmel (O.Carm)<br>
-          <strong>Gereja Neo-Gothic tertua di Malang</strong> (berdiri 1897, bangunan 1905)<br>
-          <strong>Kontak:</strong> (0341) 323938
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🌐 hkykayutangan.org</span>
-          <span class="source-tag">📷 @hky.kayutangan</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Kesatrian -->
-  <div class="church-card" data-wilayah="kota" data-trust="sedang" data-search="kesatrian ratu rosari plongkowati blimbing">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Maria Ratu Rosari</div>
-          <div class="card-paroki">Paroki Kesatrian</div>
-          <div class="card-location">📍 Jl. Plongkowati No. 2, Blimbing</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-med">⚠️ Sedang</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 16.30</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 06.00, 08.00, 16.30</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 16.30 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 06.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 08.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 16.30 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box" style="background:rgba(212,168,67,0.06);border-color:rgba(212,168,67,0.2);">
-          ⚠️ <strong>Perlu dicek ulang.</strong> Data dari agregator, belum ada website/IG resmi yang terverifikasi.<br>
-          <strong>Kontak:</strong> (0341) 366371
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🗃 jadwalmisa.id (agregator)</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Janti -->
-  <div class="church-card" data-wilayah="kota" data-trust="sedang" data-search="janti yohanes pemandi keben surya timur kedungkandang">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja St. Yohanes Pemandi</div>
-          <div class="card-paroki">Paroki Janti</div>
-          <div class="card-location">📍 Jl. Keben II Surya Timur No. 9-10, Kedungkandang</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-med">⚠️ Sedang</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 06.00, 08.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 06.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 08.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box" style="background:rgba(212,168,67,0.06);border-color:rgba(212,168,67,0.2);">
-          ⚠️ <strong>Perlu dicek ulang.</strong> Data dari agregator, belum ada konfirmasi dari sumber resmi 2025–2026.<br>
-          <strong>Kontak:</strong> (0341) 800441
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🗃 jadwalmisa.id (agregator)</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Lely -->
-  <div class="church-card" data-wilayah="kota" data-trust="sedang" data-search="lely maria diangkat surga celaket bunga lely lowokwaru">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Maria Diangkat Ke Surga</div>
-          <div class="card-paroki">Paroki Lely (Celaket)</div>
-          <div class="card-location">📍 Jl. Bunga Lely No. 17-19, Lowokwaru</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-med">⚠️ Sedang</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 06.00, 08.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 06.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 08.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Misa Harian:</strong> Senin, Selasa, Rabu, Jumat 17.30 · Kamis 05.30<br>
-          <strong>Gereja Cor Jesu</strong> (area paroki): Sabtu 17.00 · Minggu 06.00, 08.00, 17.00<br>
-          <strong>IG:</strong> @mdks_lelycelaket
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🌐 parokimdkslely.org</span>
-          <span class="source-tag">📷 @mdks_lelycelaket</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─────────────── KABUPATEN — DEKENAT UTARA ─────────────── -->
-  <div class="section-label" data-section="kabupaten">🌿 Kabupaten Malang — Dekenat Utara</div>
-
-  <!-- Paroki Lawang -->
-  <div class="church-card" data-wilayah="kabupaten" data-trust="sedang" data-search="lawang santa maria tak bernoda gereja jago stasiun">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Santa Maria Tak Bernoda</div>
-          <div class="card-paroki">Paroki Lawang</div>
-          <div class="card-location">📍 Area Stasiun Lawang, Kab. Malang</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-med">⚠️ Sedang</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 07.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 07.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Misa Harian:</strong> Senin–Kamis 05.30 · <strong>Jumat Pertama:</strong> 17.00<br>
-          <strong>Gereja tertua ketiga</strong> Keuskupan Malang (dibangun 1918) — dikenal sebagai "Gereja Jago"<br>
-          <strong>Facebook:</strong> paroki.lawang
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🗃 jadwalmisa.id + Google Maps</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Singosari -->
-  <div class="church-card" data-wilayah="kabupaten" data-trust="tinggi" data-search="singosari yohanes maria vianney tni au">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja St. Yohanes Maria Vianney</div>
-          <div class="card-paroki">Paroki Singosari</div>
-          <div class="card-location">📍 Area TNI AU Singosari, Kab. Malang</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-high">✅ Tinggi</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 08.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 06.00 WIB (harian)</div>
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB (mingguan)</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 08.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Misa Harian:</strong> Senin–Jumat 18.00, Sabtu 06.00<br>
-          <strong>IG:</strong> @parokisingosari (aktif 2025)
-        </div>
-        <div class="source-row">
-          <span class="source-tag">📷 @parokisingosari</span>
-          <span class="source-tag">🗃 jadwalmisa.id</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Tumpang -->
-  <div class="church-card" data-wilayah="kabupaten" data-trust="sedang" data-search="tumpang maria diangkat ke surga raya tumpang">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Santa Maria Diangkat Ke Surga</div>
-          <div class="card-paroki">Paroki Tumpang</div>
-          <div class="card-location">📍 Jl. Raya Tumpang, Kec. Tumpang</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-med">⚠️ Sedang</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 17.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 08.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 17.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 08.00 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box" style="background:rgba(212,168,67,0.06);border-color:rgba(212,168,67,0.2);">
-          <strong>Jumat Pertama:</strong> 18.00 WIB<br>
-          ⚠️ Data dari agregator — disarankan konfirmasi langsung ke paroki sebelum hadir.
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🗃 jadwalmisa.id (agregator)</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─────────────── KABUPATEN — DEKENAT SELATAN ─────────────── -->
-  <div class="section-label" data-section="kabupaten">🌾 Kabupaten Malang — Dekenat Selatan</div>
-
-  <!-- Paroki Kepanjen -->
-  <div class="church-card" data-wilayah="kabupaten" data-trust="sedang" data-search="kepanjen santa maria tak bernoda kawi banurejo">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Santa Maria Tak Bernoda</div>
-          <div class="card-paroki">Paroki Kepanjen</div>
-          <div class="card-location">📍 Jl. Kawi No. 21, Kepanjen</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-med">⚠️ Sedang</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 18.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 06.30</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 18.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 06.30 WIB</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box" style="background:rgba(212,168,67,0.06);border-color:rgba(212,168,67,0.2);">
-          <strong>Jumat Pertama:</strong> 17.30 WIB<br>
-          ⚠️ Website paroki ada tapi jadwal misa tidak tampil eksplisit. Disarankan konfirmasi langsung.
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🗃 jadwalmisa.id (agregator)</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Purworejo -->
-  <div class="church-card" data-wilayah="kabupaten" data-trust="tinggi" data-search="purworejo santa perawan maria ratu damai gondanglegi">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Santa Perawan Maria</div>
-          <div class="card-paroki">Paroki Purworejo (Maria Ratu Damai)</div>
-          <div class="card-location">📍 Jl. Raya Purworejo, area Gondanglegi</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-high">✅ Tinggi</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> 18.00</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> 07.00, 18.00</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="detail-grid">
-          <div class="detail-box">
-            <div class="detail-box-label">🕯 Misa Sabtu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 18.00 WIB</div>
-            </div>
-          </div>
-          <div class="detail-box">
-            <div class="detail-box-label">☀️ Misa Minggu</div>
-            <div class="time-list">
-              <div class="time-item"><span class="time-dot"></span> 07.00 WIB</div>
-              <div class="time-item"><span class="time-dot"></span> 18.00 WIB ✦ Bahasa Jawa (Minggu I)</div>
-            </div>
-          </div>
-        </div>
-        <div class="note-box">
-          <strong>Misa Harian:</strong> Senin 05.30 (di gereja) · Selasa–Kamis 05.30 (di stasi)<br>
-          <strong>Jumat Pertama:</strong> 17.00 WIB<br>
-          Misa Minggu sore pertama setiap bulan menggunakan <strong>bahasa Jawa</strong>.
-        </div>
-        <div class="source-row">
-          <span class="source-tag">🌐 spmariapwr.org</span>
-          <span class="source-tag">✅ Terverifikasi</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paroki Lodalem -->
-  <div class="church-card" data-wilayah="kabupaten" data-trust="rendah" data-search="lodalem maria annuntiata trisula arjowilangun kalipare">
-    <div class="card-header" onclick="toggleCard(this)">
-      <div class="card-header-left">
-        <div class="card-icon">⛪</div>
-        <div class="card-title-block">
-          <div class="card-name">Gereja Maria Annuntiata</div>
-          <div class="card-paroki">Paroki Lodalem</div>
-          <div class="card-location">📍 Jl. Trisula No. 57, Arjowilangun, Kalipare</div>
-        </div>
-      </div>
-      <div class="card-right">
-        <span class="trust-badge trust-low">❓ Rendah</span>
-        <span class="chevron">▼</span>
-      </div>
-    </div>
-    <div class="schedule-preview">
-      <div class="sched-pill"><span class="day-label">SAB</span> —</div>
-      <div class="sched-pill"><span class="day-label">MIN</span> Data tidak tersedia</div>
-    </div>
-    <div class="card-body">
-      <div class="card-body-inner">
-        <div class="note-box" style="background:rgba(192,84,74,0.06);border-color:rgba(192,84,74,0.2);color:var(--cream-dim);">
-          ❓ <strong>Data tidak tersedia secara online.</strong><br>
-          Paroki ini berlokasi di Malang Selatan (Kalipare) — wilayah terpencil dengan kehadiran digital yang sangat terbatas.<br><br>
-          <strong>Sangat disarankan:</strong> Hubungi langsung ke (0341) 379629 untuk konfirmasi jadwal misa terbaru.
-        </div>
-        <div class="source-row">
-          <span class="source-tag">📋 Terdaftar di Keuskupan Malang</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<script type="application/json" id="parishes-data">
+{
+  "version": 1,
+  "title": "Jadwal Misa Malang Raya",
+  "parishes": [
+    {
+      "sectionLabel": "🏛 Kota Malang — Dekenat I",
+      "id": "ijen",
+      "wilayah": "kota",
+      "trust": "tinggi",
+      "search": "ijen katedral spmgk santa perawan maria gunung karmel buring klojen",
+      "cardName": "Gereja Katedral Ijen",
+      "cardParoki": "Paroki SPMGK (Ijen)",
+      "location": "📍 Jl. Buring No. 60, Klojen",
+      "sabtu": [
+        "16.30",
+        "18.30"
+      ],
+      "minggu": [
+        "05.30",
+        "07.30",
+        "16.30",
+        "18.30"
+      ],
+      "noteHtml": "<strong>Kapel:</strong> Kapel Sengkaling (Sabtu 17.00) · Kapel Landungsari (Sabtu 18.00)<br><strong>Misa Harian:</strong> 05.30 WIB setiap hari<br><strong>Kontak:</strong> (0341) 362524",
+      "sources": [
+        "🌐 parokiijenmalang.my.id",
+        "📷 @parokiijen"
+      ]
+    },
+    {
+      "id": "langsep",
+      "wilayah": "kota",
+      "trust": "tinggi",
+      "search": "langsep vincentius paulo ananas sukun pisang candi",
+      "cardName": "Gereja St. Vincentius A Paulo",
+      "cardParoki": "Paroki Langsep",
+      "location": "📍 Jl. Ananas No. 41, Sukun",
+      "sabtu": [
+        "17.00"
+      ],
+      "minggu": [
+        "06.00",
+        "08.00",
+        "17.00"
+      ],
+      "noteHtml": "<strong>Misa Harian:</strong> 05.30 WIB setiap hari<br><strong>Misa Penyembuhan:</strong> Diadakan setiap bulan (konfirmasi ke paroki)<br><strong>Kontak:</strong> (0341) 561336",
+      "sources": [
+        "🌐 parokilangsep.org",
+        "📷 @parokilangsep_malang"
+      ]
+    },
+    {
+      "id": "tidar",
+      "wilayah": "kota",
+      "trust": "tinggi",
+      "search": "tidar andreas puncak esberg dau karangwidoro",
+      "cardName": "Gereja St. Andreas",
+      "cardParoki": "Paroki Tidar",
+      "location": "📍 Jl. Puncak Esberg No. 22, Dau",
+      "sabtu": [
+        "17.00"
+      ],
+      "minggu": [
+        "06.30",
+        "09.00",
+        "17.00"
+      ],
+      "noteHtml": "<strong>Misa Harian:</strong> 05.30 WIB · <strong>Jalan Salib Jumat:</strong> 17.00 (dilanjut misa)<br><strong>Ordo:</strong> Karmel (O.Carm)<br><strong>Website:</strong> parokitidarmalang.org",
+      "sources": [
+        "🌐 parokitidarmalang.org",
+        "🗓 Update: Maret 2026"
+      ]
+    },
+    {
+      "sectionLabel": "🏙 Kota Malang — Dekenat II",
+      "id": "blimbing",
+      "wilayah": "kota",
+      "trust": "tinggi",
+      "search": "blimbing albertus trapani yani ahmad",
+      "cardName": "Gereja St. Albertus de Trapani",
+      "cardParoki": "Paroki Blimbing",
+      "location": "📍 Jl. A. Yani No. 22, Blimbing",
+      "sabtu": [
+        "17.00",
+        "19.00"
+      ],
+      "minggu": [
+        "06.00",
+        "08.00",
+        "17.00",
+        "19.00"
+      ],
+      "noteHtml": "<strong>Misa Harian:</strong> 05.30 & 19.00 WIB · <strong>Jumat Pertama:</strong> 18.00 WIB<br><strong>Kapel Kolese St. Yusuf:</strong> Sabtu Minggu pagi 07.00 (Mojolangu)<br><strong>Kontak:</strong> (0341) 491842",
+      "sources": [
+        "🌐 parokiblimbing.org",
+        "📷 @parokiblimbing"
+      ]
+    },
+    {
+      "id": "kayutangan",
+      "wilayah": "kota",
+      "trust": "tinggi",
+      "search": "kayutangan hati kudus yesus sugiyopranoto klojen kiduldalem",
+      "cardName": "Gereja Hati Kudus Yesus",
+      "cardParoki": "Paroki Kayutangan",
+      "location": "📍 Jl. MGR Sugiyopranoto No. 2, Klojen",
+      "sabtu": [
+        "17.00"
+      ],
+      "minggu": [
+        "07.00",
+        "09.00",
+        "17.00"
+      ],
+      "noteHtml": "<strong>Misa Harian:</strong> Senin–Kamis 12.00, Jumat 11.30 · <strong>Ordo:</strong> Karmel (O.Carm)<br><strong>Gereja Neo-Gothic tertua di Malang</strong> (berdiri 1897, bangunan 1905)<br><strong>Kontak:</strong> (0341) 323938",
+      "sources": [
+        "🌐 hkykayutangan.org",
+        "📷 @hky.kayutangan"
+      ]
+    },
+    {
+      "id": "kesatrian",
+      "wilayah": "kota",
+      "trust": "sedang",
+      "search": "kesatrian ratu rosari plongkowati blimbing",
+      "cardName": "Gereja Maria Ratu Rosari",
+      "cardParoki": "Paroki Kesatrian",
+      "location": "📍 Jl. Plongkowati No. 2, Blimbing",
+      "sabtu": [
+        "16.30"
+      ],
+      "minggu": [
+        "06.00",
+        "08.00",
+        "16.30"
+      ],
+      "noteSkin": "warn",
+      "noteHtml": "⚠️ <strong>Perlu dicek ulang.</strong> Data dari agregator, belum ada website/IG resmi yang terverifikasi.<br><strong>Kontak:</strong> (0341) 366371",
+      "sources": [
+        "🗃 jadwalmisa.id (agregator)"
+      ]
+    },
+    {
+      "id": "janti",
+      "wilayah": "kota",
+      "trust": "sedang",
+      "search": "janti yohanes pemandi keben surya timur kedungkandang",
+      "cardName": "Gereja St. Yohanes Pemandi",
+      "cardParoki": "Paroki Janti",
+      "location": "📍 Jl. Keben II Surya Timur No. 9-10, Kedungkandang",
+      "sabtu": [
+        "17.00"
+      ],
+      "minggu": [
+        "06.00",
+        "08.00"
+      ],
+      "noteSkin": "warn",
+      "noteHtml": "⚠️ <strong>Perlu dicek ulang.</strong> Data dari agregator, belum ada konfirmasi dari sumber resmi 2025–2026.<br><strong>Kontak:</strong> (0341) 800441",
+      "sources": [
+        "🗃 jadwalmisa.id (agregator)"
+      ]
+    },
+    {
+      "id": "lely",
+      "wilayah": "kota",
+      "trust": "sedang",
+      "search": "lely maria diangkat surga celaket bunga lely lowokwaru",
+      "cardName": "Gereja Maria Diangkat Ke Surga",
+      "cardParoki": "Paroki Lely (Celaket)",
+      "location": "📍 Jl. Bunga Lely No. 17-19, Lowokwaru",
+      "sabtu": [
+        "17.00"
+      ],
+      "minggu": [
+        "06.00",
+        "08.00"
+      ],
+      "noteHtml": "<strong>Misa Harian:</strong> Senin, Selasa, Rabu, Jumat 17.30 · Kamis 05.30<br><strong>Gereja Cor Jesu</strong> (area paroki): Sabtu 17.00 · Minggu 06.00, 08.00, 17.00<br><strong>IG:</strong> @mdks_lelycelaket",
+      "sources": [
+        "🌐 parokimdkslely.org",
+        "📷 @mdks_lelycelaket"
+      ]
+    },
+    {
+      "sectionLabel": "🌿 Kabupaten Malang — Dekenat Utara",
+      "id": "lawang",
+      "wilayah": "kabupaten",
+      "trust": "sedang",
+      "search": "lawang santa maria tak bernoda gereja jago stasiun",
+      "cardName": "Gereja Santa Maria Tak Bernoda",
+      "cardParoki": "Paroki Lawang",
+      "location": "📍 Area Stasiun Lawang, Kab. Malang",
+      "sabtu": [
+        "17.00"
+      ],
+      "minggu": [
+        "07.00"
+      ],
+      "noteHtml": "<strong>Misa Harian:</strong> Senin–Kamis 05.30 · <strong>Jumat Pertama:</strong> 17.00<br><strong>Gereja tertua ketiga</strong> Keuskupan Malang (dibangun 1918) — dikenal sebagai \"Gereja Jago\"<br><strong>Facebook:</strong> paroki.lawang",
+      "sources": [
+        "🗃 jadwalmisa.id + Google Maps"
+      ]
+    },
+    {
+      "id": "singosari",
+      "wilayah": "kabupaten",
+      "trust": "tinggi",
+      "search": "singosari yohanes maria vianney tni au",
+      "cardName": "Gereja St. Yohanes Maria Vianney",
+      "cardParoki": "Paroki Singosari",
+      "location": "📍 Area TNI AU Singosari, Kab. Malang",
+      "sabtuDetail": [
+        "06.00 WIB (harian)",
+        "17.00 WIB (mingguan)"
+      ],
+      "sabtu": [
+        "06.00",
+        "17.00"
+      ],
+      "minggu": [
+        "08.00"
+      ],
+      "noteHtml": "<strong>Misa Harian:</strong> Senin–Jumat 18.00, Sabtu 06.00<br><strong>IG:</strong> @parokisingosari (aktif 2025)",
+      "sources": [
+        "📷 @parokisingosari",
+        "🗃 jadwalmisa.id"
+      ]
+    },
+    {
+      "id": "tumpang",
+      "wilayah": "kabupaten",
+      "trust": "sedang",
+      "search": "tumpang maria diangkat ke surga raya tumpang",
+      "cardName": "Gereja Santa Maria Diangkat Ke Surga",
+      "cardParoki": "Paroki Tumpang",
+      "location": "📍 Jl. Raya Tumpang, Kec. Tumpang",
+      "sabtu": [
+        "17.00"
+      ],
+      "minggu": [
+        "08.00"
+      ],
+      "noteSkin": "warn",
+      "noteHtml": "<strong>Jumat Pertama:</strong> 18.00 WIB<br>⚠️ Data dari agregator — disarankan konfirmasi langsung ke paroki sebelum hadir.",
+      "sources": [
+        "🗃 jadwalmisa.id (agregator)"
+      ]
+    },
+    {
+      "sectionLabel": "🌾 Kabupaten Malang — Dekenat Selatan",
+      "id": "kepanjen",
+      "wilayah": "kabupaten",
+      "trust": "sedang",
+      "search": "kepanjen santa maria tak bernoda kawi banurejo",
+      "cardName": "Gereja Santa Maria Tak Bernoda",
+      "cardParoki": "Paroki Kepanjen",
+      "location": "📍 Jl. Kawi No. 21, Kepanjen",
+      "sabtu": [
+        "18.00"
+      ],
+      "minggu": [
+        "06.30"
+      ],
+      "noteSkin": "warn",
+      "noteHtml": "<strong>Jumat Pertama:</strong> 17.30 WIB<br>⚠️ Website paroki ada tapi jadwal misa tidak tampil eksplisit. Disarankan konfirmasi langsung.",
+      "sources": [
+        "🗃 jadwalmisa.id (agregator)"
+      ]
+    },
+    {
+      "id": "purworejo",
+      "wilayah": "kabupaten",
+      "trust": "tinggi",
+      "search": "purworejo santa perawan maria ratu damai gondanglegi",
+      "cardName": "Gereja Santa Perawan Maria",
+      "cardParoki": "Paroki Purworejo (Maria Ratu Damai)",
+      "location": "📍 Jl. Raya Purworejo, area Gondanglegi",
+      "sabtu": [
+        "18.00"
+      ],
+      "minggu": [
+        "07.00",
+        "18.00"
+      ],
+      "mingguDetail": [
+        "07.00 WIB",
+        "18.00 WIB ✦ Bahasa Jawa (Minggu I)"
+      ],
+      "noteHtml": "<strong>Misa Harian:</strong> Senin 05.30 (di gereja) · Selasa–Kamis 05.30 (di stasi)<br><strong>Jumat Pertama:</strong> 17.00 WIB<br>Misa Minggu sore pertama setiap bulan menggunakan <strong>bahasa Jawa</strong>.",
+      "sources": [
+        "🌐 spmariapwr.org",
+        "✅ Terverifikasi"
+      ]
+    },
+    {
+      "id": "lodalem",
+      "wilayah": "kabupaten",
+      "trust": "rendah",
+      "search": "lodalem maria annuntiata trisula arjowilangun kalipare",
+      "cardName": "Gereja Maria Annuntiata",
+      "cardParoki": "Paroki Lodalem",
+      "location": "📍 Jl. Trisula No. 57, Arjowilangun, Kalipare",
+      "noSchedule": true,
+      "schedulePreviewSabtu": "—",
+      "schedulePreviewMinggu": "Data tidak tersedia",
+      "sabtu": [],
+      "minggu": [],
+      "noteSkin": "danger",
+      "noteHtml": "❓ <strong>Data tidak tersedia secara online.</strong><br>Paroki ini berlokasi di Malang Selatan (Kalipare) — wilayah terpencil dengan kehadiran digital yang sangat terbatas.<br><br><strong>Sangat disarankan:</strong> Hubungi langsung ke (0341) 379629 untuk konfirmasi jadwal misa terbaru.",
+      "sources": [
+        "📋 Terdaftar di Keuskupan Malang"
+      ]
+    }
+  ]
+}
+</script>
 
   <div id="noResults">
     <div style="font-size:2rem;margin-bottom:0.5rem;">🔍</div>
@@ -1249,87 +905,385 @@
     <ul>
       <li>Jadwal ini berlaku untuk <strong>misa reguler</strong>. Pada Hari Raya Besar (Natal, Paskah, dll.) jadwal biasanya berubah — selalu cek website/IG resmi.</li>
       <li>Jadwal bisa berubah sewaktu-waktu karena acara paroki, renovasi, atau kondisi khusus.</li>
-      <li>Data diverifikasi dari sumber resmi paroki per <strong>2025–2026</strong>. Paroki dengan badge ⚠️ disarankan dikonfirmasi langsung.</li>
+      <li>Data diverifikasi dari sumber resmi paroki per <strong><time id="info-page-updated" datetime=""></time></strong>. Paroki dengan badge ⚠️ disarankan dikonfirmasi langsung.</li>
       <li>Seluruh paroki di bawah naungan <strong>Keuskupan Malang</strong> — keuskupanmalang.com</li>
     </ul>
   </div>
 </main>
 
 <footer>
-  Data diambil dari website resmi paroki, Instagram resmi, dan sumber terverifikasi<br>
-  Keuskupan Malang · Diperbarui 2025–2026 · Untuk keperluan informasi pribadi
+  Data diambil dari website resmi paroki, Instagram resmi, dan sumber terverifikasi (tersimpan sebagai JSON di berkas ini)<br>
+  Keuskupan Malang · Data diambil per tanggal <time id="footer-page-updated" datetime=""></time> · Untuk keperluan informasi pribadi
 </footer>
 
 <script>
-  let activeFilter = 'all';
+(function () {
+  "use strict";
 
-  function toggleCard(header) {
-    const card = header.closest('.church-card');
-    card.classList.toggle('open');
+  var TRUST_CLASS = { tinggi: "trust-high", sedang: "trust-med", rendah: "trust-low" };
+  var TRUST_TEXT = { tinggi: "✅ Tinggi", sedang: "⚠️ Sedang", rendah: "❓ Rendah" };
+  var SABTU_SORE_MIN = 16 * 60;
+  var MINGGU_PAGI_CUTOFF = 11 * 60;
+  var MINGGU_SORE_MIN = 15 * 60;
+
+  var activeRegion = "all";
+  var activeLiturgy = "all";
+  var parishCount = 0;
+
+  window.toggleCard = function (header) {
+    var card = header.closest(".church-card");
+    if (card) card.classList.toggle("open");
+  };
+
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
   }
 
-  function setFilter(filter, btn) {
-    activeFilter = filter;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filterCards();
+  function parseMinutes(t) {
+    var p = String(t).replace(/\./g, ":").split(":");
+    var h = parseInt(p[0], 10) || 0;
+    var m = parseInt(p[1], 10) || 0;
+    return h * 60 + m;
+  }
+
+  function hasSabtuSore(p) {
+    if (!p.sabtu || !p.sabtu.length) return false;
+    return p.sabtu.some(function (t) {
+      return parseMinutes(t) >= SABTU_SORE_MIN;
+    });
+  }
+
+  function hasMingguPagi(p) {
+    if (!p.minggu || !p.minggu.length) return false;
+    return p.minggu.some(function (t) {
+      return parseMinutes(t) < MINGGU_PAGI_CUTOFF;
+    });
+  }
+
+  function hasMingguSore(p) {
+    if (!p.minggu || !p.minggu.length) return false;
+    return p.minggu.some(function (t) {
+      return parseMinutes(t) >= MINGGU_SORE_MIN;
+    });
+  }
+
+  function matchesLiturgy(p, lit) {
+    if (lit === "all") return true;
+    if (p.noSchedule) return false;
+    if (lit === "sabtu_sore") return hasSabtuSore(p);
+    if (lit === "minggu_pagi") return hasMingguPagi(p);
+    if (lit === "minggu_sore") return hasMingguSore(p);
+    return true;
+  }
+
+  function previewSabtu(p) {
+    if (p.schedulePreviewSabtu != null) return p.schedulePreviewSabtu;
+    if (!p.sabtu || !p.sabtu.length) return "—";
+    return p.sabtu.join(", ");
+  }
+
+  function previewMinggu(p) {
+    if (p.schedulePreviewMinggu != null) return p.schedulePreviewMinggu;
+    if (!p.minggu || !p.minggu.length) return "—";
+    return p.minggu.join(", ");
+  }
+
+  function sectionDataAttr(label) {
+    if (!label) return "kota";
+    return label.indexOf("Kabupaten") !== -1 ? "kabupaten" : "kota";
+  }
+
+  function timeRow(htmlLine) {
+    return '<div class="time-item"><span class="time-dot"></span> ' + htmlLine + "</div>";
+  }
+
+  function buildSabtuDetail(p) {
+    if (p.sabtuDetail && p.sabtuDetail.length) {
+      return p.sabtuDetail
+        .map(function (line) {
+          return timeRow(esc(line));
+        })
+        .join("");
+    }
+    if (!p.sabtu || !p.sabtu.length) return timeRow("—");
+    return p.sabtu
+      .map(function (t) {
+        return timeRow(esc(t) + " WIB");
+      })
+      .join("");
+  }
+
+  function buildMingguDetail(p) {
+    if (p.mingguDetail && p.mingguDetail.length) {
+      return p.mingguDetail
+        .map(function (line) {
+          return timeRow(esc(line));
+        })
+        .join("");
+    }
+    if (!p.minggu || !p.minggu.length) return timeRow("—");
+    return p.minggu
+      .map(function (t) {
+        return timeRow(esc(t) + " WIB");
+      })
+      .join("");
+  }
+
+  function renderParishCard(p) {
+    var id = esc(p.id);
+    var trustCls = TRUST_CLASS[p.trust] || "trust-med";
+    var trustTxt = TRUST_TEXT[p.trust] || p.trust;
+    var noteClass =
+      "note-box" +
+      (p.noteSkin === "warn" ? " note-box--warn" : p.noteSkin === "danger" ? " note-box--danger" : "");
+    var sources = (p.sources || [])
+      .map(function (t) {
+        return '<span class="source-tag">' + esc(t) + "</span>";
+      })
+      .join("");
+
+    var innerDetail = "";
+    if (!p.noSchedule) {
+      innerDetail =
+        '<div class="detail-grid">' +
+        '<div class="detail-box">' +
+        '<div class="detail-box-label">🕯 Misa Sabtu</div>' +
+        '<div class="time-list">' +
+        buildSabtuDetail(p) +
+        "</div></div>" +
+        '<div class="detail-box">' +
+        '<div class="detail-box-label">☀️ Misa Minggu</div>' +
+        '<div class="time-list">' +
+        buildMingguDetail(p) +
+        "</div></div></div>";
+    }
+
+    return (
+      '<div class="church-card" id="card-' +
+      id +
+      '" data-wilayah="' +
+      esc(p.wilayah) +
+      '" data-trust="' +
+      esc(p.trust) +
+      '" data-search="' +
+      esc(p.search || "") +
+      '">' +
+      '<div class="card-header" onclick="toggleCard(this)">' +
+      '<div class="card-header-left">' +
+      '<div class="card-icon">⛪</div>' +
+      '<div class="card-title-block">' +
+      '<div class="card-name">' +
+      esc(p.cardName) +
+      "</div>" +
+      '<div class="card-paroki">' +
+      esc(p.cardParoki) +
+      "</div>" +
+      '<div class="card-location">' +
+      esc(p.location) +
+      "</div></div></div>" +
+      '<div class="card-right">' +
+      '<span class="trust-badge ' +
+      trustCls +
+      '">' +
+      esc(trustTxt) +
+      "</span>" +
+      '<span class="chevron">▼</span>' +
+      "</div></div>" +
+      '<div class="schedule-preview">' +
+      '<div class="sched-pill"><span class="day-label">SAB</span> ' +
+      esc(previewSabtu(p)) +
+      "</div>" +
+      '<div class="sched-pill"><span class="day-label">MIN</span> ' +
+      esc(previewMinggu(p)) +
+      "</div></div>" +
+      '<div class="card-body"><div class="card-body-inner">' +
+      innerDetail +
+      '<div class="' +
+      noteClass +
+      '">' +
+      (p.noteHtml || "") +
+      "</div>" +
+      '<div class="source-row">' +
+      sources +
+      "</div></div></div></div>"
+    );
+  }
+
+  function renderAll(parishes) {
+    var html = [];
+    parishes.forEach(function (p) {
+      if (p.sectionLabel) {
+        html.push(
+          '<div class="section-label" data-section="' +
+            sectionDataAttr(p.sectionLabel) +
+            '">' +
+            esc(p.sectionLabel) +
+            "</div>"
+        );
+      }
+      html.push(renderParishCard(p));
+    });
+    return html.join("");
+  }
+
+  function buildLookup(parishes) {
+    var byId = {};
+    parishes.forEach(function (p) {
+      if (p.id) byId[p.id] = p;
+    });
+    return byId;
   }
 
   function filterCards() {
-    const q = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.church-card');
-    let visible = 0;
+    var q = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+    var cards = document.querySelectorAll(".church-card");
+    var visible = 0;
+    var byId = window.__PARISH_BY_ID || {};
 
-    cards.forEach(card => {
-      const wilayah = card.dataset.wilayah;
-      const trust = card.dataset.trust;
-      const search = (card.dataset.search || '').toLowerCase();
-      const name = card.querySelector('.card-name').textContent.toLowerCase();
-      const loc = card.querySelector('.card-location').textContent.toLowerCase();
-      const combined = search + ' ' + name + ' ' + loc;
+    cards.forEach(function (card) {
+      var wilayah = card.getAttribute("data-wilayah");
+      var trust = card.getAttribute("data-trust");
+      var search = (card.getAttribute("data-search") || "").toLowerCase();
+      var nameEl = card.querySelector(".card-name");
+      var locEl = card.querySelector(".card-location");
+      var name = (nameEl && nameEl.textContent) || "";
+      var loc = (locEl && locEl.textContent) || "";
+      var combined = (search + " " + name + " " + loc).toLowerCase();
 
-      const matchFilter =
-        activeFilter === 'all' ||
-        (activeFilter === 'kota' && wilayah === 'kota') ||
-        (activeFilter === 'kabupaten' && wilayah === 'kabupaten') ||
-        (activeFilter === 'tinggi' && trust === 'tinggi') ||
-        (activeFilter === 'perludicek' && (trust === 'sedang' || trust === 'rendah'));
+      var matchRegion =
+        activeRegion === "all" ||
+        (activeRegion === "kota" && wilayah === "kota") ||
+        (activeRegion === "kabupaten" && wilayah === "kabupaten") ||
+        (activeRegion === "tinggi" && trust === "tinggi") ||
+        (activeRegion === "perludicek" && (trust === "sedang" || trust === "rendah"));
 
-      const matchSearch = !q || combined.includes(q);
+      var pid = card.id.replace(/^card-/, "");
+      var p = byId[pid];
+      var matchLiturgy = !p || matchesLiturgy(p, activeLiturgy);
 
-      if (matchFilter && matchSearch) {
-        card.classList.remove('hidden');
+      var matchSearch = !q || combined.indexOf(q) !== -1;
+
+      if (matchRegion && matchLiturgy && matchSearch) {
+        card.classList.remove("hidden");
         visible++;
       } else {
-        card.classList.add('hidden');
-        card.classList.remove('open');
+        card.classList.add("hidden");
+        card.classList.remove("open");
       }
     });
 
-    // show/hide section labels
-    document.querySelectorAll('.section-label').forEach(label => {
-      const section = label.dataset.section;
-      const afterCards = [];
-      let el = label.nextElementSibling;
-      while (el && !el.classList.contains('section-label') && !el.classList.contains('info-panel')) {
-        if (el.classList.contains('church-card')) afterCards.push(el);
+    document.querySelectorAll(".section-label").forEach(function (label) {
+      var afterCards = [];
+      var el = label.nextElementSibling;
+      while (el && !el.classList.contains("section-label") && !el.classList.contains("info-panel")) {
+        if (el.classList.contains("church-card")) afterCards.push(el);
         el = el.nextElementSibling;
       }
-      const anyVisible = afterCards.some(c => !c.classList.contains('hidden'));
-      label.style.display = anyVisible ? '' : 'none';
+      var anyVisible = afterCards.some(function (c) {
+        return !c.classList.contains("hidden");
+      });
+      label.style.display = anyVisible ? "" : "none";
     });
 
-    const noRes = document.getElementById('noResults');
-    noRes.style.display = visible === 0 ? 'block' : 'none';
+    var noRes = document.getElementById("noResults");
+    noRes.style.display = visible === 0 ? "block" : "none";
 
-    const count = document.getElementById('resultCount');
-    count.textContent = visible === 14 ? '' : `Menampilkan ${visible} dari 14 paroki`;
+    var countEl = document.getElementById("resultCount");
+    countEl.textContent =
+      visible === parishCount ? "" : "Menampilkan " + visible + " dari " + parishCount + " paroki";
   }
 
-  // stagger animation
-  document.querySelectorAll('.church-card').forEach((card, i) => {
-    card.style.animationDelay = (i * 0.04) + 's';
-  });
+  function setRegionFilter(filter, btn) {
+    activeRegion = filter;
+    document.querySelectorAll("#filter-region .filter-btn").forEach(function (b) {
+      b.classList.toggle("active", b === btn);
+    });
+    filterCards();
+  }
+
+  function setLiturgyFilter(filter, btn) {
+    activeLiturgy = filter;
+    document.querySelectorAll("#filter-liturgy .filter-btn").forEach(function (b) {
+      b.classList.toggle("active", b === btn);
+    });
+    filterCards();
+  }
+
+  function wireFilters() {
+    document.getElementById("filter-region").addEventListener("click", function (e) {
+      var b = e.target.closest(".filter-btn");
+      if (!b || !b.getAttribute("data-region")) return;
+      setRegionFilter(b.getAttribute("data-region"), b);
+    });
+    document.getElementById("filter-liturgy").addEventListener("click", function (e) {
+      var b = e.target.closest(".filter-btn");
+      if (!b || !b.getAttribute("data-liturgy")) return;
+      setLiturgyFilter(b.getAttribute("data-liturgy"), b);
+    });
+  }
+
+  function staggerCards() {
+    document.querySelectorAll(".church-card").forEach(function (card, i) {
+      card.style.animationDelay = i * 0.04 + "s";
+    });
+  }
+
+  function setPageUpdatedDates() {
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, "0");
+    var day = String(d.getDate()).padStart(2, "0");
+    var iso = y + "-" + m + "-" + day;
+    var formatted = d.toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    ["info-page-updated", "footer-page-updated"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.setAttribute("datetime", iso);
+        el.textContent = formatted;
+      }
+    });
+  }
+
+  function init() {
+    setPageUpdatedDates();
+    var root = document.getElementById("parishes-root");
+    var dataEl = document.getElementById("parishes-data");
+    var parishes;
+    try {
+      parishes = JSON.parse(dataEl.textContent).parishes || [];
+    } catch (err) {
+      root.innerHTML =
+        '<div class="note-box note-box--danger" style="margin-top:0">' +
+        "<strong>Data JSON rusak atau tidak ditemukan.</strong> Periksa elemen <code>#parishes-data</code>." +
+        "</div>";
+      return;
+    }
+    parishCount = parishes.filter(function (p) {
+      return p.id;
+    }).length;
+    var nEl = document.getElementById("parish-count-num");
+    if (nEl) nEl.textContent = String(parishCount);
+    window.__PARISH_BY_ID = buildLookup(parishes);
+    root.innerHTML = renderAll(parishes);
+    wireFilters();
+    document.getElementById("searchInput").addEventListener("input", filterCards);
+    staggerCards();
+    filterCards();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
 </script>
+
+
 </body>
 </html>
